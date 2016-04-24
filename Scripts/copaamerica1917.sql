@@ -1,10 +1,10 @@
-insert into game (matchid, matchdate) values
-                 (7, '1917-09-30'),
-                 (8, '1917-10-03'),
-                 (9, '1917-10-06'),
-                 (10, '1917-10-07'),
-                 (11, '1917-10-12'),
-                 (12, '1917-10-14');
+insert into game (matchid, matchdate, game_type) values
+                 (7, '1917-09-30', 1),
+                 (8, '1917-10-03', 1),
+                 (9, '1917-10-06', 1),
+                 (10, '1917-10-07', 1),
+                 (11, '1917-10-12', 1),
+                 (12, '1917-10-14', 1);
 
 insert into game_score (id, matchid, squad, goals, points, time_type) values
                        (25,       7,   598,     4,      2,         2),
