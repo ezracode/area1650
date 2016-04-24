@@ -8,9 +8,15 @@ create table if not exists time_type (
      name varchar(25) charset utf8
 );
 
+create table if not exists game_type (
+    id smallint primary key,
+    name varchar(25) charset utf8
+);
+
 create table if not exists game (
      matchid smallint primary key,
-     matchdate date
+     matchdate date,
+	 game_type smallint
 );
 
 create table if not exists game_score (
@@ -22,4 +28,3 @@ create table if not exists game_score (
      time_type smallint,
      unique(id, matchid)
 );
-
