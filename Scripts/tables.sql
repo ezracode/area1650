@@ -3,6 +3,11 @@ create table if not exists country (
      name varchar(125) charset utf8
 );
 
+create table if not exists tournament (
+     code smallint primary key, 
+	 country smallint
+);
+
 create table if not exists time_type (
      id smallint primary key,
      name varchar(25) charset utf8
