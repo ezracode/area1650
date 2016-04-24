@@ -23,4 +23,4 @@ left join game_score g
     on b.matchid = g.matchid and b.time_type = g.time_type and b.squad <> g.squad
 where b.time_type = 2 
 group by a.code
-order by points desc
+order by points desc, diff desc
