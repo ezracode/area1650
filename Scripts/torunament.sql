@@ -7,4 +7,5 @@ insert into tournament (code, country) values
 					   (1922, 55),
 					   (1923, 598),
                        (1924, 598),
-                       (1925, 54);
+                       (1925, 54),
+					   (1926, 56);
