@@ -4,5 +4,5 @@ insert into tournament (code, country) values
 					   (1919, 55),
 					   (1920, 56),
 					   (1921, 54),
-					   (1922, 55);
-					   
+					   (1922, 55),
+					   (1923, 598);
