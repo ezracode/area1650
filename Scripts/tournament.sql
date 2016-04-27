@@ -1,3 +1,4 @@
+delete from tournament where code > 0;
 insert into tournament (code, country) values
                        (1916, 54),
 					   (1917, 598),
@@ -15,4 +16,5 @@ insert into tournament (code, country) values
    					   (1937, 54),
 					   (1939, 51),
 					   (1941, 56),
-					   (1942, 598);
+					   (1942, 598),
+					   (1945, 56);

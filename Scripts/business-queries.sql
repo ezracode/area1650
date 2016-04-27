@@ -1,3 +1,5 @@
+select a.code, b.name from tournament a, country b where a.country = b.code;
+
 select 
     a.name, 
 	 sum(b.points) points, 
