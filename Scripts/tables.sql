@@ -4,8 +4,9 @@ create table if not exists country (
 );
 
 create table if not exists tournament (
-     code smallint primary key, 
-	 country smallint
+     code smallint, 
+	 country smallint,
+	 unique(id, matchid)
 );
 
 create table if not exists time_type (
