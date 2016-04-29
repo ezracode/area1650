@@ -19,4 +19,5 @@ insert into tournament (code, country) values
 					   (1942, 598),
 					   (1945, 56),
 					   (1946, 54),
-					   (1947, 593);
+					   (1947, 593),
+					   (19449, 55);
