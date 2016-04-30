@@ -8,7 +8,7 @@ select
 	 count(d.squad) draw, 
 	 count(e.squad) loose,
 	 sum(f.goals) goals,
-	 sum(g.goals) again,
+	 sum(g.goals) againt,
 	 (sum(f.goals) - sum(g.goals)) diff
 from 
 country a inner join game_score b inner join game h
