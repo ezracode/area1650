@@ -8,3 +8,4 @@ insert into country (code, name) values (51, 'Peru');
 insert into country (code, name) values (593, 'Ecuador');
 insert into country (code, name) values (57, 'Colombia');
 insert into country (code, name) values (58, 'Venezuela');
+insert into country (code, name) values (0, 'America');
