@@ -11,3 +11,5 @@ insert into country (code, name) values (58, 'Venezuela');
 insert into country (code, name) values (0, 'America');
 insert into country (code, name) values (1, 'United States');
 insert into country (code, name) values (52, 'Mexico');
+insert into country (code, name) values (506, 'Costa Rica');
+
