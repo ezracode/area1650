@@ -15,7 +15,7 @@ from
 country a inner join game_score b inner join game h
     on a.code = b.squad and b.matchid = h.matchid and h.game_type in (2) and year(h.matchdate) = 1923
 left join game_score c
-    on c.points = 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad
+    on c.points >= 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad
 left join game_score d
     on d.points = 1 and b.matchid = d.matchid and b.time_type = d.time_type and b.squad = d.squad
 left join game_score e
@@ -43,7 +43,7 @@ from
 country a inner join game_score b inner join game h
     on a.code = b.squad and b.matchid = h.matchid and h.game_type in (1, 2, 4, 6, 7)
 left join game_score c
-    on c.points = 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad
+    on c.points >= 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad
 left join game_score d
     on d.points = 1 and b.matchid = d.matchid and b.time_type = d.time_type and b.squad = d.squad
 left join game_score e
@@ -73,7 +73,7 @@ country a inner join game_score b inner join game h inner join group_stage i
     on a.code = b.squad and b.matchid = h.matchid and h.game_type in (2) and year(h.matchdate) = 1975 
 	 and b.squad = i.squad and i.group_code in ('A', 'B', 'C')  and i.tournament = 1975
 left join game_score c
-    on c.points = 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad
+    on c.points >= 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad
 left join game_score d
     on d.points = 1 and b.matchid = d.matchid and b.time_type = d.time_type and b.squad = d.squad
 left join game_score e
@@ -102,7 +102,7 @@ from
 country a inner join game_score b inner join game h 
     on a.code = b.squad and b.matchid = h.matchid and h.game_type in (1, 2, 4, 6, 7) and year(h.matchdate) = 1975
 left join game_score c
-    on c.points = 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad
+    on c.points >= 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad
 left join game_score d
     on d.points = 1 and b.matchid = d.matchid and b.time_type = d.time_type and b.squad = d.squad
 left join game_score e
