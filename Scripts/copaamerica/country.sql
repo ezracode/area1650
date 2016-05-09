@@ -15,3 +15,7 @@ insert into country (code, name) values (506, 'Costa Rica');
 insert into country (code, name) values (81, 'Japan');
 insert into country (code, name) values (504, 'Honduras');
 insert into country (code, name) values (1876, 'Jamaica');
+insert into country (code, name) values (1868, 'Trinidad and Tobago');
+insert into country (code, name) values (509, 'Haiti');
+insert into country (code, name) values (507, 'Panama');
+insert into country (code, name) values (53, 'Cuba');
