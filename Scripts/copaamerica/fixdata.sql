@@ -1,0 +1,1 @@
+update game_score set squad = 58 where squad = 59;
