@@ -33,7 +33,6 @@ select
     a.name, 
 	 sum(b.points) points, 
 	 count(c.squad) games,
-	 max(h.game_type) game_type,
 	 count(d.squad) win, 
 	 count(e.squad) draw,
 	 count(f.squad) loose,
@@ -42,8 +41,7 @@ select
 	 (sum(g.goals) - sum(i.goals)) diff
 from 
 country a inner join game_score b inner join game h 
-    on a.code = b.squad and b.matchid = h.matchid and b.time_type in (2,4, 6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8)
-                        and year(h.matchdate) < 2016 
+    on a.code = b.squad and b.matchid = h.matchid and b.time_type in (2,4) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8)
 left join game_score c
     on  b.time_type = 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad
 left join game_score d
@@ -51,13 +49,16 @@ left join game_score d
 left join game_score e
     on e.points = 1 and b.matchid = e.matchid and b.time_type = e.time_type and b.squad = e.squad
 left join game_score f
-    on f.points = 0 and f.time_type = (select max(time_type) from game_score where matchid = f.matchid) and b.matchid = f.matchid and b.time_type = f.time_type and b.squad = f.squad
-left join game_score g
-    on b.matchid = g.matchid and b.time_type = g.time_type and b.squad = g.squad
+    on f.points = 0 and f.time_type = (select max(time_type) from game_score where matchid = f.matchid) 
+	                 and b.matchid = f.matchid and b.time_type = f.time_type and b.squad = f.squad
+left join game_score g        
+    on g.time_type = (select max(time_type) from game_score where matchid = g.matchid and time_type in (2,4))  
+	                 and b.matchid = g.matchid and b.time_type = g.time_type and b.squad = g.squad 
 left join game_score i
-    on b.matchid = i.matchid and b.time_type = i.time_type and b.squad <> i.squad
+    on i.time_type = (select max(time_type) from game_score where matchid = i.matchid and time_type in (2,4))  
+	                 and b.matchid = i.matchid and b.time_type = i.time_type and b.squad <> i.squad 
 group by a.code
-order by game_type desc, points desc, diff desc, goals desc, again desc
+order by points desc, diff desc, goals desc, again desc
 
 /*Tabla por grupo desde 1975 actualidad*/
 select 
