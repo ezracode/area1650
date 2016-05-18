@@ -15,6 +15,9 @@ insert into country (code, name) values (32, 'Belgium');
 insert into country (code, name) values (49228, 'West Germany');
 insert into country (code, name) values (31, 'Netherlands');
 insert into country (code, name) values (30, 'Greece');
+insert into country (code, name) values (351, 'Portugal');
+insert into country (code, name) values (40, 'Romania');
+insert into country (code, name) values (353, 'Ireland');
 /*-------------------------------------------------------------------*/
 insert into country (code, name) values (4428, 'Northern Ireland');
 insert into country (code, name) values (44141, 'Scotland');
