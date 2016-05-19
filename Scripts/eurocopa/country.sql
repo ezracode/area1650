@@ -21,8 +21,12 @@ insert into country (code, name) values (353, 'Ireland');
 insert into country (code, name) values (37517, 'Commonwealth of Independent States');
 insert into country (code, name) values (46, 'Sweden');
 insert into country (code, name) values (44141, 'Scotland');
+insert into country (code, name) values (41, 'Switzerland');
+insert into country (code, name) values (385, 'Croatia');
+insert into country (code, name) values (90, 'Turkey');
+insert into country (code, name) values (49, 'Germany');
+insert into country (code, name) values (359, 'Bulgaria');
 /*-------------------------------------------------------------------*/
 insert into country (code, name) values (4428, 'Northern Ireland');
-insert into country (code, name) values (44141, 'Scotland');
 insert into country (code, name) values (4429, 'Wales');
 insert into country (code, name) values (1613, 'Canada');
