@@ -33,7 +33,10 @@ insert into country (code, name) values (371, 'Latvia');
 insert into country (code, name) values (43, 'Austria');
 insert into country (code, name) values (48, 'Poland');
 insert into country (code, name) values (380, 'Ukraine');
-/*-------------------------------------------------------------------*/
-insert into country (code, name) values (4428, 'Northern Ireland');
+insert into country (code, name) values (355, 'Albania');
 insert into country (code, name) values (4429, 'Wales');
+insert into country (code, name) values (421, 'Slovakia');
+insert into country (code, name) values (4428, 'Northern Ireland');
+insert into country (code, name) values (354, 'Iceland');
+/*-------------------------------------------------------------------*/
 insert into country (code, name) values (1613, 'Canada');

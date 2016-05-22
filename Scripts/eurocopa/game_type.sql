@@ -6,4 +6,5 @@ insert into game_type (id, name) values
 (5, 'Third Place'),
 (6, 'Final'),
 (7, 'Play-Off'),
-(8, 'Final Round');
+(8, 'Final Round'),
+(9, 'Round of 16);
