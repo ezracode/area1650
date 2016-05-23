@@ -46,3 +46,14 @@ create table if not exists game_score (
 );
 
 create index if not exists game_score_i on game_score (squad);
+
+create view current_country as
+select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (49, 49228) and b.code = 49 
+union
+select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (42, 420) and b.code = 420
+union
+select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (38, 38111) and b.code = 381
+union
+select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (7097, 37517, 7) and b.code = 7
+union
+select a.code as oldsquad, a.name as oldname, a.code as newsquad, a.name as newname from country a where a.code not in (49, 49228, 42, 420, 38, 38111, 381, 7097, 37517, 7)
