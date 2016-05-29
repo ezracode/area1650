@@ -1,7 +1,7 @@
 <?php
 	function host_tournament($year)
 	{
-		$mysqli = new mysqli('127.0.0.1', 'areanet_admin', 'erSS1979_', 'areanet_copaamerica');
+		$mysqli = new mysqli('127.0.0.1', 'areanet_admin', 'erSS1979_', 'areanet_eurocopa');
 		if ($mysqli->connect_errno) 
 		{
 			echo 'Falló la conexión a MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
@@ -20,7 +20,7 @@
 
 	function group_detail($year, $group)
 	{
-		$mysqli = new mysqli('127.0.0.1', 'areanet_admin', 'erSS1979_', 'areanet_copaamerica');
+		$mysqli = new mysqli('127.0.0.1', 'areanet_admin', 'erSS1979_', 'areanet_eurocopa');
 		if ($mysqli->connect_errno) 
 		{
 			echo 'Falló la conexión a MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
