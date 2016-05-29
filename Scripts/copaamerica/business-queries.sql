@@ -128,3 +128,13 @@ order by game_type desc, points desc, diff desc, goals desc, again desc
 select a.*, b.*, a.goals, b.goals, c.matchdate from game_score a inner join game_score b inner join game c 
 on a.matchid = b.matchid and a.time_type = b.time_type and a.time_type in (2,4,6) and a.matchid = c.matchid
 where a.squad = 55 and b.squad = 598
+
+/*Partidos por grupo*/
+select c.matchid, c.squad, d.name, e.squad, f.name from 
+group_stage a inner join game b inner join game_score c inner join country d inner join game_score e inner join country f
+on b.matchid = c.matchid and c.time_type = e.time_type 
+and c.id = (select min(id) from game_score where matchid = c.matchid)
+and c.matchid = e.matchid and c.squad <> e.squad
+and a.squad = c.squad and a.tournament = 2016 and year (b.matchdate) = a.tournament and a.group_code = 'D' and
+ b.game_type = 2 and c.time_type = 2 and c.squad = d.code and e.squad = f.code 
+ order by b.matchid
