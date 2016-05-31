@@ -125,10 +125,18 @@ group by a.code
 order by game_type desc, points desc, diff desc, goals desc, again desc
 
 /*Todos los resultados entre dos equipos*/
-select a.*, b.*, a.goals, b.goals, c.matchdate from game_score a inner join game_score b inner join game c 
+select a.*, b.*, a.goals, b.goals, c.matchdate, d.goals, e.goals  from game_score a inner join game_score b inner join game c 
 on a.matchid = b.matchid and a.time_type = b.time_type and 
 a.time_type = (select max(time_type) from game_score where matchid = b.matchid and time_type in (2,3,4,6))
 and a.matchid = c.matchid
+left join game_score d 
+ on d.time_type = 7 
+ and a.matchid = d.matchid
+ and a.squad = d.squad
+left join game_score e 
+ on e.time_type = 7 
+ and b.matchid = e.matchid
+ and b.squad = e.squad
 where a.squad = 55 and b.squad = 598
 
 /*Partidos por grupo*/
