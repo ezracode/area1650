@@ -11,23 +11,21 @@
 		$script = $script . '						<p>Copa America</p>';
 		$script = $script . host_tournament($year);
 		$script = $script . '						<p>Group Stage</p>';
-		$script = $script . '						<p>Group A</p>';
-		$group = 'A';
-		$script = $script . group_detail($year, $group);
-		$script = $script . group_matches($year, $group);
-		$script = $script . '						<p>Group B</p>';
-		$group = 'B';
-		$script = $script . group_detail($year, $group);
-		$script = $script . group_matches($year, $group);
-		$script = $script . '						<p>Group C</p>';
-		$group = 'C';
-		$script = $script . group_detail($year, $group);
-		$script = $script . group_matches($year, $group);
-		$script = $script . '						<p>Group D</p>';
-		$group = 'D';
-		$script = $script . group_detail($year, $group);
-		$script = $script . group_matches($year, $group);
-		$script = $script . '					</div>';
+
+		$array = array('A', 'B', 'C', 'D');
+		foreach ($array as &$group)
+		{
+			$script = $script . '					<div id="group">';
+			$script = $script . '						<p>Group' . $group . '</p>';
+			$script = $script . '						<div id="group_detail">';
+			$script = $script . group_detail($year, $group);
+			$script = $script . '						</div>';
+			$script = $script . '						<div id="group_matches">';
+			$script = $script . group_matches($year, $group);
+			$script = $script . '						</div>';
+			$script = $script . '					</div>';
+		}
+
 		$script = $script . '				</body>';
 		$script = $script . '    </html>';
 		return $script;
