@@ -4,8 +4,8 @@
 		$script = '<!DOCTYPE HTML>'; 
 		$script = $script . '    <html>';
 		$script = $script . '        <head>';
-		$script = $script . '            <title>Football Statistics</title>';
-		$script = $script . '            <meta name="description" content="Football Statistic of All Times">';
+		$script = $script . '            <title>Football Soccer Statistics</title>';
+		$script = $script . '            <meta name="description" content="Football Soccer Statistics of All Times">';
 		$script = $script . '            <meta name="robots" content="index, nofollow">';
 		$script = $script . '            <meta http-equiv="content-type" content="text/html;charset=UTF-8">';
 		$script = $script . '         </head>';
