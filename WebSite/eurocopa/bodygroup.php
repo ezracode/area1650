@@ -17,7 +17,7 @@
 		foreach ($array as &$group)
 		{
 			$script = $script . '					<div id="group">';
-			$script = $script . '						<p>Group' . $group . '</p>';
+			$script = $script . '						<p>Group ' . $group . '</p>';
 			$script = $script . '						<div id="group_detail">';
 			$script = $script . group_detail($year, $group);
 			$script = $script . '						</div>';
