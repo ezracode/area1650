@@ -160,7 +160,7 @@
 	}
 	function match_stats($squada, $squadb)
 	{
-		$mysqli = new PDO('mysql:dbname=copaamerica;host=127.0.0.1', 'areanet_admin', 'erSS1979_');
+		$mysqli = new mysqli('127.0.0.1', 'areanet_admin', 'erSS1979_', 'areanet_copaamerica');
 		if ($mysqli->connect_errno) 
 		{
 			echo 'Falló la conexión a MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
@@ -181,34 +181,29 @@
 		$query = $query . ' 	 (count(f.squad) / count(c.squad)) pl';
 		$query = $query . ' from ';
 		$query = $query . ' country a inner join game_score b inner join game h inner join game_score j';
-		$query = $query . '     on a.code = :squada and a.code = b.squad and b.matchid = h.matchid and b.matchid = j.matchid and j.squad = :squadb and b.time_type = j.time_type';
+		$query = $query . '     on a.code = ? and a.code = b.squad and b.matchid = h.matchid and b.matchid = j.matchid and j.squad = ? and b.time_type = j.time_type';
 		$query = $query . ' 	 and b.time_type in (2,4,6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8) and h.matchdate < now()';
 		$query = $query . ' left join game_score c';
-		$query = $query . '     on  b.time_type = 2 and b.matchid = c.matchid and b.time_type = c.time_type and c.squad = :squadb';
+		$query = $query . '     on  b.time_type = 2 and b.matchid = c.matchid and b.time_type = c.time_type and c.squad = ?';
 		$query = $query . ' left join game_score d';
-		$query = $query . '     on d.points >= 2 and b.matchid = d.matchid and b.time_type = d.time_type and d.squad = :squadb';
+		$query = $query . '     on d.points >= 2 and b.matchid = d.matchid and b.time_type = d.time_type and d.squad = ?';
 		$query = $query . ' left join game_score e';
-		$query = $query . '     on e.points = 1 and b.matchid = e.matchid and b.time_type = e.time_type and e.squad = :squadb';
+		$query = $query . '     on e.points = 1 and b.matchid = e.matchid and b.time_type = e.time_type and e.squad = ?';
 		$query = $query . ' left join game_score f';
 		$query = $query . '     on f.points = 0 and f.time_type = (select max(time_type) from game_score where matchid = f.matchid)'; 
-		$query = $query . ' 	                 and b.matchid = f.matchid and b.time_type = f.time_type and f.squad = :squadb';
+		$query = $query . ' 	                 and b.matchid = f.matchid and b.time_type = f.time_type and f.squad = ?';
 		$query = $query . ' left join game_score g';
 		$query = $query . '     on g.time_type = (select max(time_type) from game_score where matchid = g.matchid and time_type in (2,4,6))';  
-		$query = $query . ' 	                 and b.matchid = g.matchid and b.time_type = g.time_type and g.squad = :squada';
+		$query = $query . ' 	                 and b.matchid = g.matchid and b.time_type = g.time_type and g.squad = ?';
 		$query = $query . ' left join game_score i';
 		$query = $query . '     on i.time_type = (select max(time_type) from game_score where matchid = i.matchid and time_type in (2,4,6))';  
-		$query = $query . ' 	                 and b.matchid = i.matchid and b.time_type = i.time_type and i.squad = :squadb';
+		$query = $query . ' 	                 and b.matchid = i.matchid and b.time_type = i.time_type and i.squad = ?';
 		$query = $query . ' group by a.code';
 		$query = $query . ' order by points desc, diff desc, goals desc, again desc';		
-		echo '<p>aqui</p>';
 		$resultado = $mysqli->prepare($query);
-		echo '<p>aqui1</p>';
-		$resultado->bindParam(':squada', $squada, PDO::PARAM_INT);
-		$resultado->bindParam(':squadb', $squadb, PDO::PARAM_INT);	
-		echo '<p>aqui2</p>';		
+		$resultado->bind_param('iiiiiiii', $squada, $squadb, $squadb, $squadb, $squadb, $squadb, $squada, $squadb);
 		$resultado->execute();
-		echo '<p>aqui3</p>';
-        $resultado->bind_result($name, $points, $games, $win, $draw, $loose, $goals, $again, $diff, $pw, $pd, $pl);		
+	    $resultado->bind_result($name, $points, $games, $win, $draw, $loose, $goals, $again, $diff, $pw, $pd, $pl);		
 		
 		$script = '<a href="http://www.area1650.net/copaamerica/page.php">Copa America Centenario</a>';
 		$script = $script . '<table>';
