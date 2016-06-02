@@ -13,7 +13,7 @@
 		$script = $script . '						<p>Group Stage</p>';
 
 		$array = array('A', 'B', 'C', 'D');
-		foreach ($array as &$group)
+		foreach ($array as $group)
 		{
 			$script = $script . '					<div id="group">';
 			$script = $script . '						<p>Group ' . $group . '</p>';

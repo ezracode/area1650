@@ -18,7 +18,7 @@
         <div id="country">
 		<?php
 			require ('groups.php');
-			echo country_stats($_GET["country"]);
+			echo match_stats($_GET["squada"], $_GET["squadb"]);
 		?>
         </div>
     </body>
