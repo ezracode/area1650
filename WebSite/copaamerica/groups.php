@@ -37,7 +37,6 @@
 		$mysqli->close();
 		return $script;
 	}
-
 	function group_matches($year, $group)
 	{
 		$mysqli = new mysqli('127.0.0.1', 'areanet_admin', 'erSS1979_', 'areanet_copaamerica');
@@ -209,10 +208,10 @@
 		
 		$script = '<a href="http://www.area1650.net/copaamerica/page.php">Copa America Centenario</a>';
 		$script = $script . '<table>';
-		while  ($resultado->fetch())
+		while ($resultado->fetch())
 		{
 			$script = $script . '<tr>';
-			$script = $script . '<td>Contry</td><td>'                . $namea   . '</td><td>Contry</td><td>'                . $nameb    . '</td>';
+			$script = $script . '<td>Country</td><td>'               . $namea   . '</td><td>Country</td><td>'               . $nameb    . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
 			$script = $script . '<td>Games</td><td>'                 . $games   . '</td>';
@@ -235,6 +234,84 @@
 			$script = $script . '<tr>';
 			$script = $script . '<td>Likelihood of Victory</td><td>' . $pa     . '</td><td>Likelihood of Victory</td><td>'  . $pb      . '</td>';
 			$script = $script . '</tr>';
+		}
+		$script = $script . '</table>';
+		$mysqli->close();
+		return $script;
+	}
+	function match_details($squada, $squadb)
+	{
+		$mysqli = new mysqli('127.0.0.1', 'areanet_admin', 'erSS1979_', 'areanet_copaamerica');
+		if ($mysqli->connect_errno) 
+		{
+			echo 'Falló la conexión a MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
+		}
+		$query = ' select i.name namea, j.name  nameb, f.name gametype, g.name timetype, a.goals goalsa, b.goals goalsb, c.matchdate matchdate, ifnull(d.goals,-1) goalsd, ifnull(e.goals, -1) goalse, ifnull(h.name, \'\') penalties from game_score a inner join game_score b inner join game c';
+		//$query = ' select i.name namea, j.name  nameb, f.name gametype, g.name timetype, a.goals goalsa, b.goals goalsb, c.matchdate matchdate from game_score a inner join game_score b inner join game c';
+		$query = $query . ' on a.matchid = b.matchid and a.time_type = b.time_type and'; 
+		$query = $query . ' a.time_type = (select max(time_type) from game_score where matchid = b.matchid and time_type in (2,3,4,6))';
+		$query = $query . ' and a.matchid = c.matchid and c.matchdate < now()';
+		$query = $query . ' left join game_score d'; 
+		$query = $query . '  on d.time_type = 7'; 
+		$query = $query . '  and a.matchid = d.matchid';
+		$query = $query . '  and a.squad = d.squad';
+		$query = $query . ' left join game_score e'; 
+		$query = $query . '  on e.time_type = 7'; 
+		$query = $query . '  and b.matchid = e.matchid';
+		$query = $query . '  and b.squad = e.squad';
+		$query = $query . '  left join game_type f on c.game_type = f.id';
+		$query = $query . '  left join time_type g on a.time_type = g.id';
+		$query = $query . '  left join time_type h on e.time_type = h.id';
+		$query = $query . '  left join country i on a.squad = i.code';
+		$query = $query . '  left join country j on b.squad = j.code';
+		$query = $query . ' where a.squad = ? and b.squad = ?';
+		$query = $query . ' order by matchdate desc';		
+		$resultado = $mysqli->prepare($query);
+		$resultado->bind_param('ii', $squada, $squadb);
+		$resultado->execute();
+	    $resultado->bind_result($namea, $nameb, $gametype, $timetype, $goalsa, $goalsb, $matchdate, $goalsd, $goalse, $penalties);		
+	    //$resultado->bind_result($namea, $nameb, $gametype, $timetype, $goalsa, $goalsb, $matchdate);		
+		$script = '<table>';
+		while ($resultado->fetch())
+		{
+/*
+				echo $namea;
+                echo $nameb;
+				echo $gametype;
+                echo $timetype;
+				echo $goalsa; 
+				echo $goalsb;
+				echo $matchdate;	
+*/			
+			$script = $script . '<tr>';
+			$script = $script . '<td>Match Date: ' . $matchdate . '</td>';
+			$script = $script . '</tr>';
+
+			$script = $script . '<tr>';
+			$script = $script . '<td>Country</td><td>' . $namea . '</td><td>Country</td><td>' . $nameb . '</td>';
+			$script = $script . '</tr>';
+
+			$script = $script . '<tr>';
+			$script = $script . '<td></td><td>' . $goalsa . '</td><td></td><td>' . $goalsb . '</td>';
+			$script = $script . '</tr>';
+			
+			$script = $script . '<tr>';
+			$script = $script . '<td>Game type</td><td>' . $gametype . '</td>';
+			$script = $script . '</tr>';
+
+			$script = $script . '<tr>';
+			$script = $script . '<td>Time Type</td><td>' . $timetype . '</td>';
+			$script = $script . '</tr>';
+
+		    if ($goalsd > -1 && $goalse > -1)
+			{
+				$script = $script . '<tr>';
+				$script = $script . '<td>Time Type</td><td>' . $penalties . '</td>';
+				$script = $script . '</tr>';
+				$script = $script . '<tr>';
+				$script = $script . '<td></td><td>' . $goalsd . '</td><td></td><td>' . $goalse . '</td>';
+				$script = $script . '</tr>';
+			}
 		}
 		$script = $script . '</table>';
 		$mysqli->close();

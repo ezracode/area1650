@@ -15,11 +15,14 @@
 		ga('send', 'pageview');
 	</script>		
     <body>
-        <div id="country">
 		<?php
 			require ('groups.php');
+		    echo '<div id="match_stat">';
 			echo match_stats($_GET["squada"], $_GET["squadb"]);
+			echo '</div>';
+			echo '<div id="match_details">';
+			echo match_details($_GET["squada"], $_GET["squadb"]);
+			echo '</div>';
 		?>
-        </div>
-    </body>
+	</body>
 </html>
