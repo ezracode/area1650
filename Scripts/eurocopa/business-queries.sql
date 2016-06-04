@@ -131,19 +131,19 @@ where a.squad = 55 and b.squad = 598
 
 /*Participacion por pais*/
 select 
-    a.name, 
-    year(h.matchdate) championship,
-	 sum(b.points) points, 
-	 count(c.squad) games,
-	 count(d.squad) win, 
-	 count(e.squad) draw,
-	 count(f.squad) loose,
- 	 sum(g.goals) goals,
-	 sum(i.goals) again,
-	 (sum(g.goals) - sum(i.goals)) diff
+    a.newname, 
+	year(h.matchdate) championship,
+	sum(b.points) points, 
+	count(c.squad) games,
+	count(d.squad) win, 
+	count(e.squad) draw,
+	count(f.squad) loose,
+ 	sum(g.goals) goals,
+	sum(i.goals) again,
+	(sum(g.goals) - sum(i.goals)) diff
 from 
-country a inner join game_score b inner join game h 
-    on a.code = b.squad and b.matchid = h.matchid and b.time_type in (2,3,4,6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8) and h.matchdate < '2016-05-15'
+current_country a inner join game_score b inner join game h 
+    on a.code = b.squad     and b.matchid = h.matchid and b.time_type in (2,3,4,6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8) and h.matchdate < now
 left join game_score c
     on  b.time_type = 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad
 left join game_score d
@@ -162,6 +162,8 @@ left join game_score i
 /*where b.squad in (49228, 49)*/
 /*where b.squad in (42, 420)*/
 /*where b.squad in (38, 38111)*/
+group by a.newsquad
+
 where b.squad in (7097, 37517, 7)
 group by a.code, year(h.matchdate)
 order by year(h.matchdate) asc, points desc, diff desc, goals desc, again desc
@@ -195,5 +197,44 @@ left join game_score g
 left join game_score i
     on i.time_type = (select max(time_type) from game_score where matchid = i.matchid and time_type in (2,3,4,6))  
 	                 and b.matchid = i.matchid and b.time_type = i.time_type and b.squad <> i.squad
+group by a.newsquad
+order by points desc, diff desc, goals desc, again desc
+
+/*Informacion por equipo*/
+select 
+	a.newname, 
+	sum(b.points) points, 
+	count(c.squad) games,
+	count(d.squad) win, 
+	count(e.squad) draw,
+	count(f.squad) loose,
+ 	sum(g.goals) goals,
+	sum(i.goals) again,
+	(sum(g.goals) - sum(i.goals)) diff,
+	(count(d.squad) / count(c.squad)) pw,
+	(count(e.squad) / count(c.squad)) pd,
+ 	(count(f.squad) / count(c.squad)) pl
+from 
+current_country a inner join game_score b inner join game h 
+    on a.oldsquad = b.squad and b.matchid = h.matchid and b.time_type in (2,3,4,6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8) and h.matchdate < now()
+left join game_score c
+    on  b.time_type = 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad
+left join game_score d
+    on d.points >= 2 and b.matchid = d.matchid and b.time_type = d.time_type and b.squad = d.squad
+left join game_score e
+    on e.points = 1 and b.matchid = e.matchid and b.time_type = e.time_type and b.squad = e.squad
+left join game_score f
+    on f.points = 0 and f.time_type = (select max(time_type) from game_score where matchid = f.matchid) 
+	                 and b.matchid = f.matchid and b.time_type = f.time_type and b.squad = f.squad
+left join game_score g        
+    on g.time_type = (select max(time_type) from game_score where matchid = g.matchid and time_type in (2,3,4,6))  
+	                 and b.matchid = g.matchid and b.time_type = g.time_type and b.squad = g.squad 
+left join game_score i
+    on i.time_type = (select max(time_type) from game_score where matchid = i.matchid and time_type in (2,3,4,6))  
+	                 and b.matchid = i.matchid and b.time_type = i.time_type and b.squad <> i.squad 
+/*where b.squad in (49228, 49)*/
+/*where b.squad in (42, 420)*/
+/*where b.squad in (38, 38111)*/
+where a.newsquad in (7)
 group by a.newsquad
 order by points desc, diff desc, goals desc, again desc
