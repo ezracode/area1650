@@ -81,7 +81,7 @@
 			echo 'Falló la conexión a MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
 		}
 		
-		$query = 'select a.name, count(distinct(year(h.matchdate))) part, sum(b.points) points, count(c.squad) games, count(d.squad) win, count(e.squad) draw,';
+		$query = 'select a.name, sum(b.points) points, count(c.squad) games, count(d.squad) win, count(e.squad) draw,';
 		$query = $query . ' count(f.squad) loose, sum(g.goals) goals, sum(i.goals) again, (sum(g.goals) - sum(i.goals)) diff,';
 		$query = $query . ' (count(d.squad) / count(c.squad)) pw, (count(e.squad) / count(c.squad)) pd,';
 		$query = $query . ' (count(f.squad) / count(c.squad)) pl ';
@@ -109,7 +109,7 @@
 		$resultado = $mysqli->prepare($query);
 		$resultado->bind_param('i', $country);
 		$resultado->execute();
-        $resultado->bind_result($name, $parts, $points, $games, $win, $draw, $loose, $goals, $again, $diff, $pw, $pd, $pl);		
+        $resultado->bind_result($name, $points, $games, $win, $draw, $loose, $goals, $again, $diff, $pw, $pd, $pl);		
 		
 		$script = '<a href="http://www.area1650.net/copaamerica/page.php">Copa America Centenario</a>';
 		$script = $script . '<table>';
@@ -117,9 +117,6 @@
 		{
 			$script = $script . '<tr>';
 			$script = $script . '<td>Country</td><td>'               . $name   . '</td>';
-			$script = $script . '</tr>';
-			$script = $script . '<tr>';
-			$script = $script . '<td>Participations</td><td>'        . $parts . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
 			$script = $script . '<td>Points</td><td>'                . $points . '</td>';
@@ -236,6 +233,9 @@
 			$script = $script . '<tr>';
 			$script = $script . '<td>Likelihood of Victory</td><td>' . $pa     . '</td><td>Likelihood of Victory</td><td>'  . $pb      . '</td>';
 			$script = $script . '</tr>';
+			$script = $script . '<tr>';
+			$script = $script . '<td>Likelihood of Draw</td><td>'    . $pd     . '</td></td>';
+			$script = $script . '</tr>';
 		}
 		$script = $script . '</table>';
 		$mysqli->close();
@@ -249,7 +249,6 @@
 			echo 'Falló la conexión a MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
 		}
 		$query = ' select i.name namea, j.name  nameb, f.name gametype, g.name timetype, a.goals goalsa, b.goals goalsb, c.matchdate matchdate, ifnull(d.goals,-1) goalsd, ifnull(e.goals, -1) goalse, ifnull(h.name, \'\') penalties from game_score a inner join game_score b inner join game c';
-		//$query = ' select i.name namea, j.name  nameb, f.name gametype, g.name timetype, a.goals goalsa, b.goals goalsb, c.matchdate matchdate from game_score a inner join game_score b inner join game c';
 		$query = $query . ' on a.matchid = b.matchid and a.time_type = b.time_type and'; 
 		$query = $query . ' a.time_type = (select max(time_type) from game_score where matchid = b.matchid and time_type in (2,3,4,6))';
 		$query = $query . ' and a.matchid = c.matchid and c.matchdate < now()';
@@ -272,19 +271,9 @@
 		$resultado->bind_param('ii', $squada, $squadb);
 		$resultado->execute();
 	    $resultado->bind_result($namea, $nameb, $gametype, $timetype, $goalsa, $goalsb, $matchdate, $goalsd, $goalse, $penalties);		
-	    //$resultado->bind_result($namea, $nameb, $gametype, $timetype, $goalsa, $goalsb, $matchdate);		
 		$script = '<table>';
 		while ($resultado->fetch())
 		{
-/*
-				echo $namea;
-                echo $nameb;
-				echo $gametype;
-                echo $timetype;
-				echo $goalsa; 
-				echo $goalsb;
-				echo $matchdate;	
-*/			
 			$script = $script . '<tr>';
 			$script = $script . '<td>Match Date: ' . $matchdate . '</td>';
 			$script = $script . '</tr>';
