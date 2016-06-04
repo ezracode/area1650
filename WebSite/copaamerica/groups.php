@@ -6,7 +6,6 @@
 		{
 			echo 'Falló la conexión a MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
 		}
-		$sctipt = '';
 		$resultado = $mysqli->query('select a.code, b.name from tournament a, country b where a.country = b.code and a.code = ' . $year);
 		for ($num_fila = 0; $num_fila <= $resultado->num_rows - 1; $num_fila++) 
 		{
@@ -82,7 +81,7 @@
 			echo 'Falló la conexión a MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
 		}
 		
-		$query = 'select a.name, sum(b.points) points, count(c.squad) games, count(d.squad) win, count(e.squad) draw,';
+		$query = 'select a.name, count(distinct(year(h.matchdate))) part, sum(b.points) points, count(c.squad) games, count(d.squad) win, count(e.squad) draw,';
 		$query = $query . ' count(f.squad) loose, sum(g.goals) goals, sum(i.goals) again, (sum(g.goals) - sum(i.goals)) diff,';
 		$query = $query . ' (count(d.squad) / count(c.squad)) pw, (count(e.squad) / count(c.squad)) pd,';
 		$query = $query . ' (count(f.squad) / count(c.squad)) pl ';
@@ -110,7 +109,7 @@
 		$resultado = $mysqli->prepare($query);
 		$resultado->bind_param('i', $country);
 		$resultado->execute();
-        $resultado->bind_result($name, $points, $games, $win, $draw, $loose, $goals, $again, $diff, $pw, $pd, $pl);		
+        $resultado->bind_result($name, $parts, $points, $games, $win, $draw, $loose, $goals, $again, $diff, $pw, $pd, $pl);		
 		
 		$script = '<a href="http://www.area1650.net/copaamerica/page.php">Copa America Centenario</a>';
 		$script = $script . '<table>';
@@ -118,6 +117,9 @@
 		{
 			$script = $script . '<tr>';
 			$script = $script . '<td>Country</td><td>'               . $name   . '</td>';
+			$script = $script . '</tr>';
+			$script = $script . '<tr>';
+			$script = $script . '<td>Participations</td><td>'        . $parts . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
 			$script = $script . '<td>Points</td><td>'                . $points . '</td>';
