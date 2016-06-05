@@ -181,7 +181,7 @@ select
 	 (sum(g.goals) - sum(i.goals)) diff
 from 
 current_country a inner join game_score b inner join game h 
-    on a.oldsquad = b.squad and b.matchid = h.matchid and b.time_type in (2,3,4,6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8) and h.matchdate < '2016-05-15'
+    on a.oldsquad = b.squad and b.matchid = h.matchid and b.time_type in (2,3,4,6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8) and h.matchdate < now()
 left join game_score c
     on  b.time_type = 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad 
 left join game_score d
@@ -201,6 +201,7 @@ group by a.newsquad
 order by points desc, diff desc, goals desc, again desc
 
 /*Informacion por equipo*/
+/*Participacion por pais*/
 select 
 	a.newname, 
 	sum(b.points) points, 
@@ -216,7 +217,7 @@ select
  	(count(f.squad) / count(c.squad)) pl
 from 
 current_country a inner join game_score b inner join game h 
-    on a.oldsquad = b.squad and b.matchid = h.matchid and b.time_type in (2,3,4,6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8) and h.matchdate < now()
+    on a.newsquad = 7 and a.oldsquad = b.squad and b.matchid = h.matchid and b.time_type in (2,3,4,6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8) and h.matchdate < now()
 left join game_score c
     on  b.time_type = 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad
 left join game_score d
@@ -235,6 +236,6 @@ left join game_score i
 /*where b.squad in (49228, 49)*/
 /*where b.squad in (42, 420)*/
 /*where b.squad in (38, 38111)*/
-where a.newsquad in (7)
+/*where a.newsquad in (7)*/
 group by a.newsquad
 order by points desc, diff desc, goals desc, again desc
