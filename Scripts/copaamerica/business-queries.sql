@@ -76,7 +76,7 @@ select
 from 
 country a inner join game_score b inner join game h inner join group_stage i
     on a.code = b.squad and b.matchid = h.matchid and h.game_type in (2) and year(h.matchdate) = 2001 
-	 and b.squad = i.squad and i.group_code in ('A', 'B', 'C')  and i.tournament = 2001
+	 and b.squad = i.squad and b.goals is not null and i.group_code in ('A', 'B', 'C')  and i.tournament = 2001
 left join game_score c
     on c.points >= 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad
 left join game_score d

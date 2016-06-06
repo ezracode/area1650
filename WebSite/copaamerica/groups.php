@@ -36,6 +36,77 @@
 		$mysqli->close();
 		return $script;
 	}
+
+	function group_table($year, $group)
+	{
+		$mysqli = new mysqli('127.0.0.1', 'areanet_admin', 'erSS1979_', 'areanet_copaamerica');
+		if ($mysqli->connect_errno) 
+		{
+			echo 'Falló la conexión a MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
+		}
+		
+		$query = ' select'; 
+		$query = $query . '      a.name name, ';
+		$query = $query . ' 	 sum(b.points) points, ';
+		$query = $query . ' 	 count(b.squad) games, ';
+		$query = $query . ' 	 count(c.squad) win, ';
+		$query = $query . ' 	 count(d.squad) draw, ';
+		$query = $query . ' 	 count(e.squad) loose,';
+		$query = $query . ' 	 sum(f.goals) goals,';
+		$query = $query . ' 	 sum(g.goals) again,';
+		$query = $query . ' 	 (sum(f.goals) - sum(g.goals)) diff';
+		$query = $query . ' from ';
+		$query = $query . ' country a inner join game_score b inner join game h inner join group_stage i';
+		$query = $query . '     on a.code = b.squad and b.matchid = h.matchid and h.game_type in (2) and year(h.matchdate) = ' . $year;
+		$query = $query . ' 	 and b.squad = i.squad and b.goals is not null and i.group_code = \'' . $group  . '\' and i.tournament = ' . $year;
+		$query = $query . ' left join game_score c';
+		$query = $query . '     on c.points >= 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad';
+		$query = $query . ' left join game_score d';
+		$query = $query . '     on d.points = 1 and b.matchid = d.matchid and b.time_type = d.time_type and b.squad = d.squad';
+		$query = $query . ' left join game_score e';
+		$query = $query . '     on e.points = 0 and b.matchid = e.matchid and b.time_type = e.time_type and b.squad = e.squad';
+		$query = $query . ' left join game_score f';
+		$query = $query . '     on b.matchid = f.matchid and b.time_type = f.time_type and b.squad = f.squad';
+		$query = $query . ' left join game_score g';
+		$query = $query . '     on b.matchid = g.matchid and b.time_type = g.time_type and b.squad <> g.squad';
+		$query = $query . ' where b.time_type in (2, 4, 6)'; 
+		$query = $query . ' group by a.code';
+		$query = $query . ' order by group_code, points desc, diff desc, goals desc, again desc';
+		
+		$resultado = $mysqli->query($query);
+		$script = '<table>';
+		$script = $script . '<tr>';
+		$script = $script . '<td>Team</td>';
+		$script = $script . '<td>Points</td>';
+		$script = $script . '<td>Games</td>';
+		$script = $script . '<td>Won</td>';
+		$script = $script . '<td>Draw</td>';
+		$script = $script . '<td>Loose</td>';
+		$script = $script . '<td>Goals</td>';
+		$script = $script . '<td>Against</td>';
+		$script = $script . '<td>Difference</td>';
+		$script = $script . '</tr>';
+		for ($num_fila = 0; $num_fila <= $resultado->num_rows - 1; $num_fila++) 
+		{
+			$resultado->data_seek($num_fila);
+			$fila = $resultado->fetch_assoc();
+			$script = $script . '<tr>';
+			$script = $script . '<td>' . $fila['name'] . '</td>';
+			$script = $script . '<td>' . $fila['points'] . '</td>';
+			$script = $script . '<td>' . $fila['games'] . '</td>';
+			$script = $script . '<td>' . $fila['win'] . '</td>';
+			$script = $script . '<td>' . $fila['draw'] . '</td>';
+			$script = $script . '<td>' . $fila['loose'] . '</td>';
+			$script = $script . '<td>' . $fila['goals'] . '</td>';
+			$script = $script . '<td>' . $fila['again'] . '</td>';
+			$script = $script . '<td>' . $fila['diff'] . '</td>';
+			$script = $script . '</tr>';
+		}
+		$script = $script . '</table>';
+		$mysqli->close();
+		return $script;
+	}
+
 	function group_matches($year, $group)
 	{
 		$mysqli = new mysqli('127.0.0.1', 'areanet_admin', 'erSS1979_', 'areanet_copaamerica');
@@ -73,6 +144,7 @@
 		$mysqli->close();
 		return $script;
 	}
+	
 	function country_stats($country)
 	{
 		$mysqli = new mysqli('127.0.0.1', 'areanet_admin', 'erSS1979_', 'areanet_copaamerica');
@@ -165,6 +237,7 @@
 		
 		return $script;
 	}
+	
 	function match_stats($squada, $squadb)
 	{
 		$mysqli = new mysqli('127.0.0.1', 'areanet_admin', 'erSS1979_', 'areanet_copaamerica');
@@ -259,6 +332,7 @@
 		
 		return $script;
 	}
+	
 	function match_details($squada, $squadb)
 	{
 		$mysqli = new mysqli('127.0.0.1', 'areanet_admin', 'erSS1979_', 'areanet_copaamerica');

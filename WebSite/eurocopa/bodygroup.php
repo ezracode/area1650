@@ -24,6 +24,9 @@
 			$script = $script . '						<div id="group_matches">';
 			$script = $script . group_matches($year, $group);
 			$script = $script . '						</div>';
+			$script = $script . '						<div id="group_table">';
+			$script = $script . group_table($year, $group);
+			$script = $script . '						</div>';
 			$script = $script . '					</div>';
 		}
 
