@@ -262,4 +262,78 @@
 
 		return $script;
 	}
+	function match_details($squada, $squadb)
+	{
+		try
+		{
+			$conn = new PDO('mysql:host=127.0.0.1;dbname=areanet_eurocopa', 'areanet_admin', 'erSS1979_');
+			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		}
+		catch(PDOException $e)
+		{
+			print '¡Error!: ' . $e->getMessage() . '<br/>';
+			die();
+		}
+
+		$query = ' select i.oldname namea, j.oldname nameb, f.name gametype, g.name timetype, a.goals goalsa, b.goals goalsb, c.matchdate matchdate, ifnull(d.goals,-1) goalsd, ifnull(e.goals, -1) goalse, ifnull(h.name, \'\') penalties from game_score a inner join game_score b inner join game c';
+		$query = $query . ' on a.matchid = b.matchid and a.time_type = b.time_type and'; 
+		$query = $query . ' a.time_type = (select max(time_type) from game_score where matchid = b.matchid and time_type in (2,3,4,6))';
+		$query = $query . ' and a.matchid = c.matchid and c.matchdate < now()';
+		$query = $query . ' left join game_score d'; 
+		$query = $query . '  on d.time_type = 7'; 
+		$query = $query . '  and a.matchid = d.matchid';
+		$query = $query . '  and a.squad = d.squad';
+		$query = $query . ' left join game_score e'; 
+		$query = $query . '  on e.time_type = 7'; 
+		$query = $query . '  and b.matchid = e.matchid';
+		$query = $query . '  and b.squad = e.squad';
+		$query = $query . '  left join game_type f on c.game_type = f.id';
+		$query = $query . '  left join time_type g on a.time_type = g.id';
+		$query = $query . '  left join time_type h on e.time_type = h.id';
+		$query = $query . '  left join current_country i on a.squad = i.oldsquad';
+		$query = $query . '  left join current_country j on b.squad = j.oldsquad';
+		$query = $query . ' where i.newsquad = :squada and j.newsquad = :squadb';
+		$query = $query . ' order by matchdate desc';		
+		
+		$resultado = $conn->prepare($query);
+		$resultado->execute(array(':squada' => $squada, ':squadb' => $squadb));
+
+		$script = '<table>';
+		while ($data = $resultado->fetch())
+		{
+			$script = $script . '<tr>';
+			$script = $script . '<td>Match Date: ' . $data[6] . '</td>';
+			$script = $script . '</tr>';
+
+			$script = $script . '<tr>';
+			$script = $script . '<td>Country</td><td>' . $data[0] . '</td><td>Country</td><td>' . $data[1] . '</td>';
+			$script = $script . '</tr>';
+
+			$script = $script . '<tr>';
+			$script = $script . '<td></td><td>' . $data[4] . '</td><td></td><td>' . $data[5] . '</td>';
+			$script = $script . '</tr>';
+			
+			$script = $script . '<tr>';
+			$script = $script . '<td>Game type</td><td>' . $data[2] . '</td>';
+			$script = $script . '</tr>';
+
+			$script = $script . '<tr>';
+			$script = $script . '<td>Time Type</td><td>' . $data[3] . '</td>';
+			$script = $script . '</tr>';
+
+		    if ($data[7] > -1 && $data[8] > -1)
+			{
+				$script = $script . '<tr>';
+				$script = $script . '<td>Time Type</td><td>' . $data[9] . '</td>';
+				$script = $script . '</tr>';
+				$script = $script . '<tr>';
+				$script = $script . '<td></td><td>' . $data[7] . '</td><td></td><td>' . $data[8] . '</td>';
+				$script = $script . '</tr>';
+			}
+		}
+		$script = $script . '</table>';
+		$conn = null;
+
+		return $script;
+	}
 ?>

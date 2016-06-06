@@ -125,10 +125,27 @@ group by a.code
 order by game_type desc, points desc, diff desc, goals desc, again desc
 
 /*Todos los resultados entre dos equipos*/
-select a.*, b.*, a.goals, b.goals, c.matchdate from game_score a inner join game_score b inner join game c 
-on a.matchid = b.matchid and a.time_type = b.time_type and a.time_type in (2,4,6) and a.matchid = c.matchid
-where a.squad = 55 and b.squad = 598
-
+select i.oldname namea, j.oldname nameb, f.name gametype, g.name timetype, a.goals goalsa, b.goals goalsb, c.matchdate matchdate, ifnull(d.goals,-1) goalsd, ifnull(e.goals, -1) goalse, ifnull(h.name, '') penalties 
+from game_score a inner join game_score b inner join game c
+ on a.matchid = b.matchid and a.time_type = b.time_type and 
+ a.time_type = (select max(time_type) from game_score where matchid = b.matchid and time_type in (2,3,4,6))
+ and a.matchid = c.matchid and c.matchdate < now()
+ left join game_score d 
+  on d.time_type = 7
+  and a.matchid = d.matchid
+  and a.squad = d.squad
+ left join game_score e 
+  on e.time_type = 7
+  and b.matchid = e.matchid
+  and b.squad = e.squad
+  left join game_type f on c.game_type = f.id
+  left join time_type g on a.time_type = g.id
+  left join time_type h on e.time_type = h.id
+  left join current_country i on a.squad = i.oldsquad
+  left join current_country j on b.squad = j.oldsquad
+ where i.newsquad = 33 and j.newsquad = 40
+ order by matchdate desc
+ 
 /*Participacion por pais*/
 select 
     a.newname, 
