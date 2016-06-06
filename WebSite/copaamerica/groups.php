@@ -113,8 +113,10 @@
 		
 		$script = '<a href="http://www.area1650.net/copaamerica/page.php">Copa America Centenario</a>';
 		$script = $script . '<table>';
+		$record = 0;
 		while  ($resultado->fetch())
 		{
+			$record = 1;
 			$script = $script . '<tr>';
 			$script = $script . '<td>Country</td><td>'               . $name   . '</td>';
 			$script = $script . '</tr>';
@@ -154,6 +156,13 @@
 		}
 		$script = $script . '</table>';
 		$mysqli->close();
+		
+		if ($record == 0)
+		{
+			$script = '<a href="http://www.area1650.net/copaamerica/page.php">Copa America Centenario</a>';
+			$script = $script .'<p>No records for this team</p>';
+		}
+		
 		return $script;
 	}
 	function match_stats($squada, $squadb)
@@ -207,8 +216,10 @@
 		
 		$script = '<a href="http://www.area1650.net/copaamerica/page.php">Copa America Centenario</a>';
 		$script = $script . '<table>';
+		$record = 0;
 		while ($resultado->fetch())
 		{
+			$record = 1;
 			$script = $script . '<tr>';
 			$script = $script . '<td>Country</td><td>'               . $namea   . '</td><td>Country</td><td>'               . $nameb    . '</td>';
 			$script = $script . '</tr>';
@@ -239,6 +250,13 @@
 		}
 		$script = $script . '</table>';
 		$mysqli->close();
+		
+		if ($record == 0)
+		{
+			$script = '<a href="http://www.area1650.net/copaamerica/page.php">Copa America Centenario</a>';
+			$script = $script .'<p>No records for this match</p>';
+		}
+		
 		return $script;
 	}
 	function match_details($squada, $squadb)

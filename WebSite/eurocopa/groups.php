@@ -92,7 +92,7 @@
 		$query = $query . ' (count(f.squad) / count(c.squad)) pl ';
 		$query = $query . ' from ';
 		$query = $query . ' current_country a inner join game_score b inner join game h ';
-		$query = $query . '     on a.newsquad = ? and a.oldsquad = b.squad and b.matchid = h.matchid and b.time_type in (2,3,4,6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8) and h.matchdate < now()';
+		$query = $query . '     on a.newsquad = :country and a.oldsquad = b.squad and b.matchid = h.matchid and b.time_type in (2,3,4,6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8) and h.matchdate < now()';
 		$query = $query . ' left join game_score c';
 		$query = $query . '     on  b.time_type = 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad';
 		$query = $query . ' left join game_score d';
@@ -112,11 +112,13 @@
 		$query = $query . ' order by points desc, diff desc, goals desc, again desc';
 		
 		$resultado = $conn->prepare($query);
-		$resultado->execute(array($country));
+		$resultado->execute(array(':country' => $country));
 		$script = '<a href="http://www.area1650.net/eurocopa/page.php">UEFA Euro 2016</a>';
 		$script = $script .'<table>';
+		$record = 0;
 		while ($data = $resultado->fetch())
 		{
+			$record = 1;
 			$script = $script . '<tr>';
 			$script = $script . '<td>Country</td><td>'               . $data[0]  . '</td>';
 			$script = $script . '</tr>';
@@ -156,6 +158,108 @@
 		}
 		$script = $script . '</table>';
 		$conn = null;
+		if ($record == 0)
+		{
+			$script = '<a href="http://www.area1650.net/eurocopa/page.php">UEFA Euro 2016</a>';
+			$script = $script .'<p>No records for this team</p>';
+		}
+		return $script;
+	}
+	function match_stats($squada, $squadb)
+	{
+		try
+		{
+			$conn = new PDO('mysql:host=127.0.0.1;dbname=areanet_eurocopa', 'areanet_admin', 'erSS1979_');
+			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		}
+		catch(PDOException $e)
+		{
+			print '¡Error!: ' . $e->getMessage() . '<br/>';
+			die();
+		}
+
+		$query = ' select ';
+		$query = $query . '      a.newname squada,';
+		$query = $query . '      l.newname squadb,';
+		$query = $query . ' 	 sum(b.points) pointsa,';
+		$query = $query . ' 	 sum(i.points) pointsb,';
+		$query = $query . ' 	 count(c.squad) games,';
+		$query = $query . ' 	 count(d.squad) winb,';
+		$query = $query . ' 	 count(e.squad) draw,';
+		$query = $query . ' 	 count(f.squad) wina,';
+		$query = $query . '  	 sum(g.goals) goalsa,';
+		$query = $query . ' 	 sum(i.goals) goalsb,';
+		$query = $query . ' 	 abs(sum(g.goals) - sum(i.goals)) diff,';
+		$query = $query . ' 	 (count(d.squad) / count(c.squad)) pb,';
+		$query = $query . ' 	 (count(e.squad) / count(c.squad)) pd,';
+		$query = $query . ' 	 (count(f.squad) / count(c.squad)) pa';
+		$query = $query . ' from ';
+		$query = $query . ' current_country a inner join game_score b inner join game h inner join game_score j inner join current_country l';
+		$query = $query . '     on a.newsquad = :squada and a.oldsquad = b.squad and b.matchid = h.matchid and b.matchid = j.matchid and l.newsquad = :squadb and l.oldsquad = j.squad and b.time_type = j.time_type';
+		$query = $query . ' 	 and b.time_type in (2,3,4,6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8) and h.matchdate < now()';
+		$query = $query . ' left join game_score c';
+		$query = $query . '     on  b.time_type = 2 and b.matchid = c.matchid and b.time_type = c.time_type and l.newsquad = :squadb and l.oldsquad = c.squad';
+		$query = $query . ' left join game_score d';
+		$query = $query . '     on d.points >= 2 and b.matchid = d.matchid and b.time_type = d.time_type and l.newsquad = :squadb and l.oldsquad = d.squad';
+		$query = $query . ' left join game_score e';
+		$query = $query . '     on e.points = 1 and b.matchid = e.matchid and b.time_type = e.time_type and l.newsquad = :squadb and l.oldsquad = e.squad';
+		$query = $query . ' left join game_score f';
+		$query = $query . '     on f.points = 0 and f.time_type = (select max(time_type) from game_score where matchid = f.matchid)'; 
+		$query = $query . ' 	                 and b.matchid = f.matchid and b.time_type = f.time_type and l.newsquad = :squadb and l.oldsquad = f.squad';
+		$query = $query . ' left join game_score g';
+		$query = $query . '     on g.time_type = (select max(time_type) from game_score where matchid = g.matchid and time_type in (2,3,4,6))';  
+		$query = $query . ' 	                 and b.matchid = g.matchid and b.time_type = g.time_type and a.newsquad = :squada and a.oldsquad = g.squad';
+		$query = $query . ' left join game_score i';
+		$query = $query . '     on i.time_type = (select max(time_type) from game_score where matchid = i.matchid and time_type in (2,3,4,6))';  
+		$query = $query . ' 	                 and b.matchid = i.matchid and b.time_type = i.time_type and l.newsquad = :squadb and l.oldsquad = i.squad';
+		$query = $query . ' group by a.newsquad';
+
+		$resultado = $conn->prepare($query);
+		$resultado->execute(array(':squada' => $squada, ':squadb' => $squadb));
+
+		$script = '<a href="http://www.area1650.net/eurocopa/page.php">UEFA Euro 2016</a>';
+		$script = $script .'<table>';
+
+		$record = 0;
+		while ($data = $resultado->fetch())
+		{
+			$record = 1;
+			$script = $script . '<tr>';
+			$script = $script . '<td>Country</td><td>'               . $data[0]  . '</td><td>Country</td><td>'               . $data[1]  . '</td>';
+			$script = $script . '</tr>';
+			$script = $script . '<tr>';
+			$script = $script . '<td>Games</td><td>'                 . $data[4]  . '</td>';
+			$script = $script . '</tr>';
+			$script = $script . '<tr>';
+			$script = $script . '<td>Points</td><td>'                . $data[2]  . '</td><td>Points</td><td>'                . $data[3]  . '</td>';
+			$script = $script . '</tr>';
+			$script = $script . '<tr>';
+			$script = $script . '<td>Games Won</td><td>'             . $data[5]  . '</td><td>Games Won</td><td>'             . $data[7]  . '</td>';
+			$script = $script . '</tr>';
+			$script = $script . '<tr>';
+			$script = $script . '<td>Games Draw</td><td>'            . $data[6]  . '</td>';
+			$script = $script . '</tr>';
+			$script = $script . '<tr>';
+			$script = $script . '<td>Goals Scored</td><td>'          . $data[8]  . '</td><td>Goals Scored</td><td>'          . $data[9]  . '</td>';
+			$script = $script . '</tr>';
+			$script = $script . '<tr>';
+			$script = $script . '<td>Goals Difference</td><td>'      . $data[10] . '</td>';
+			$script = $script . '</tr>';
+			$script = $script . '<tr>';
+			$script = $script . '<td>Likelihood of Victory</td><td>' . $data[13] . '</td><td>Likelihood of Victory</td><td>' . $data[11] . '</td>';
+			$script = $script . '</tr>';
+			$script = $script . '<tr>';
+			$script = $script . '<td>Likelihood of Draw</td><td>'    . $data[12] . '</td></td>';
+			$script = $script . '</tr>';
+		}
+		$script = $script . '</table>';
+		$conn = null;
+		if ($record == 0)
+		{
+			$script = '<a href="http://www.area1650.net/eurocopa/page.php">UEFA Euro 2016</a>';
+			$script = $script .'<p>No records for this match</p>';
+		}
+
 		return $script;
 	}
 ?>
