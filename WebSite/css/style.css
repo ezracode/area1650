@@ -1,0 +1,23 @@
+body {
+	background-color: #00796B;
+}
+p {
+    color: #FFFFFF;
+	font-size: 70px;
+	margin: 0;
+    padding: 0;	
+}
+li {
+	list-style-type: none;
+}
+a:visited {
+	color: #FFFF00;	
+}
+a {
+	color: #FFFFFF;
+	font-size: 50px;
+	text-decoration: none;
+}
+#Tournaments {
+	background-color: #009688;
+}
