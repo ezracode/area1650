@@ -308,7 +308,7 @@
 			$script = $script . '<td>Points</td><td>'                . $data[2]  . '</td><td>Points</td><td>'                . $data[3]  . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
-			$script = $script . '<td>Games Won</td><td>'             . $data[5]  . '</td><td>Games Won</td><td>'             . $data[7]  . '</td>';
+			$script = $script . '<td>Games Won</td><td>'             . $data[7]  . '</td><td>Games Won</td><td>'             . $data[5]  . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
 			$script = $script . '<td>Games Draw</td><td>'            . $data[6]  . '</td>';
