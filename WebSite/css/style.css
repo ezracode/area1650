@@ -1,23 +1,55 @@
-body {
+body
+{
 	background-color: #00796B;
+	font­size: 400px; 
+	font­size: 3rem;
 }
-p {
+p
+{
+	text-align: center;
     color: #FFFFFF;
-	font-size: 70px;
+	font-size: 4rem;
 	margin: 0;
     padding: 0;	
 }
-li {
+ul
+{
+    list-style: none;
+    padding: 0 15px;
+}​
+li
+{
 	list-style-type: none;
+	margin: 0;
 }
-a:visited {
-	color: #FFFF00;	
+a:visited 
+{
+	color: white;	
 }
-a {
+a
+{
 	color: #FFFFFF;
-	font-size: 50px;
+	font-size: 2rem;
 	text-decoration: none;
 }
-#Tournaments {
+#Tournaments
+{
 	background-color: #009688;
+}
+.Social
+{
+	background-color: #009688;
+	float: left;
+}
+.Social a
+{
+	padding: 10px;
+}
+#facebook
+{
+	background: blue;
+}
+#twitter
+{
+	background: cyan;
 }
