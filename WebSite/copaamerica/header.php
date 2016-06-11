@@ -8,6 +8,7 @@
 		$script = $script . '            <meta name="description" content="Football Soccer Statistics of All Times">';
 		$script = $script . '            <meta name="robots" content="index, nofollow">';
 		$script = $script . '            <meta http-equiv="content-type" content="text/html;charset=UTF-8">';
+		$script = $script . '            <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">';	
 		$script = $script . '         </head>';
 		$script = $script . '		<script>';
 		$script = $script . '			(function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){';

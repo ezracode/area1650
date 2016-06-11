@@ -3,11 +3,9 @@
 	
 	function bodygroup()
 	{
-		$script = '    <html>'; 
-		$script = $script . '				<body>';
+		$script =           '				<body>';
 		$script = $script . '					<div id="Tournament">';
-		$script = $script . '					<a href="http:////www.area1650.net">Home</a>';
-		$script = $script . '					<div id="Tournament">';
+		$script = $script . '						<a href="http:////www.area1650.net">Home</a>';
 		$year = 2016;
 		$script = $script . '						<p>UEFA Euro</p>';
 		$script = $script . host_tournament($year);
@@ -29,7 +27,7 @@
 			$script = $script . '						</div>';
 			$script = $script . '					</div>';
 		}
-
+		$script = $script . '					</div>';
 		$script = $script . '				</body>';
 		$script = $script . '    </html>';
 		return $script;
