@@ -26,14 +26,14 @@
 			echo 'Falló la conexión a MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
 		}
 		$resultado = $mysqli->query('select a.group_code, b.code, b.name from group_stage a, country b where a.tournament = ' . $year . ' and a.group_code = \'' . $group . '\' and a.squad = b.code order by a.id');
-		$script = '<lu>';
+		$script = '<ul>';
 		for ($num_fila = 0; $num_fila <= $resultado->num_rows - 1; $num_fila++) 
 		{
 			$resultado->data_seek($num_fila);
 			$fila = $resultado->fetch_assoc();
 			$script = $script . '	<li><p>' . $fila['name'] . '</p><p><a href="http://www.area1650.net/eurocopa/country_stats.html?country=' . $fila['code'] . '">stats</a></p></li>';
 		}
-		$script = $script . '</lu>';
+		$script = $script . '</ul>';
 		$mysqli->close();
 		return $script;
 	}
@@ -77,17 +77,20 @@
 		
 		$resultado = $mysqli->query($query);
 		$script = '<table>';
+		$script = $script . '<thead>';
 		$script = $script . '<tr>';
-		$script = $script . '<td>Team</td>';
-		$script = $script . '<td>Points</td>';
-		$script = $script . '<td>Games</td>';
-		$script = $script . '<td>Won</td>';
-		$script = $script . '<td>Draw</td>';
-		$script = $script . '<td>Loose</td>';
-		$script = $script . '<td>Goals</td>';
-		$script = $script . '<td>Against</td>';
-		$script = $script . '<td>Difference</td>';
+		$script = $script . '<th>Team</th>';
+		$script = $script . '<th>Points</th>';
+		$script = $script . '<th>Games</th>';
+		$script = $script . '<th>Won</th>';
+		$script = $script . '<th>Draw</th>';
+		$script = $script . '<th>Loose</th>';
+		$script = $script . '<th>Goals</th>';
+		$script = $script . '<th>Against</th>';
+		$script = $script . '<th>Difference</th>';
 		$script = $script . '</tr>';
+		$script = $script . '</thead>';
+		$script = $script . '<tbody>';		
 		for ($num_fila = 0; $num_fila <= $resultado->num_rows - 1; $num_fila++) 
 		{
 			$resultado->data_seek($num_fila);
@@ -104,6 +107,7 @@
 			$script = $script . '<td>' . $fila['diff'] . '</td>';
 			$script = $script . '</tr>';
 		}
+		$script = $script . '</tbody>';		
 		$script = $script . '</table>';
 		$mysqli->close();
 		return $script;
