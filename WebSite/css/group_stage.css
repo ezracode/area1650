@@ -1,0 +1,136 @@
+body
+{
+	background-color: #00796B;
+	font­size: 100px; 
+	font­size: 1rem;
+	margin: 0 auto;
+	text-align: center;	
+}
+div
+{
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+#Tournament, #group
+{
+	background-color: #009688;
+}
+p
+{
+    color: #FFFFFF;
+	font-size: 2rem;
+	margin: 0 0.5rem;
+    padding: 0 auto;
+}
+ul
+{
+    list-style: none;
+	margin: 0;
+	padding: 0;
+}
+li
+{
+	list-style-type: none;
+	margin: 0;
+	display: inline-block;	
+}
+a:hover
+{
+	background-color: #0096FF;	
+}
+a:visited 
+{
+	color: white;	
+}
+a
+{
+	color: #FFFFFF;
+	font-size: 1rem;
+	margin-left: 0.2rem;
+	text-decoration: none;
+}
+table a
+{
+	margin-left: 0rem;
+}
+table 
+{
+    border-collapse: collapse;
+    border-color: white;
+    border-spacing: 2rem;
+	border-style: solid;
+    display: table;
+	margin: 1rem auto;
+}
+thead
+{
+    border-color: inherit;
+    display: table-header-group;
+    vertical-align: middle; 
+}
+tbody
+{
+    border-color: inherit;
+    display: table-row-group;
+    vertical-align: middle; 
+}
+tfoot
+{
+    border-color: inherit;
+    display: table-footer-group;
+    vertical-align: middle; 
+}
+table > tr 
+{
+    vertical-align: middle; 
+}
+col 
+{
+    display: table-column;
+}
+colgroup
+{
+    display: table-column-group;
+}
+tr
+{
+    border-color: inherit;
+    display: table-row;
+    vertical-align: inherit;
+}
+td, th 
+{
+	border-color: #FFFF66;
+	border-style: solid;
+	color: #FFFFFF;
+    display: table-cell;
+	text-align: center; 
+    vertical-align: inherit;
+	padding: 0.5rem;
+}
+th
+{
+    font-weight: bold;
+}
+caption 
+{
+    display: table-caption;
+    text-align: -webkit-center;
+}
+#group_table_a
+{
+	display: none;
+}
+
+@media (min-width: 650px) and (max-width: 10000px) 
+{
+	#group_table_a
+	{
+		display: table-row;
+	}
+	#group_table_b
+	{
+		display: none;
+	}
+}

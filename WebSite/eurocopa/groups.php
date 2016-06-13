@@ -78,7 +78,7 @@
 		$resultado = $mysqli->query($query);
 		$script = '<table>';
 		$script = $script . '<thead>';
-		$script = $script . '<tr>';
+		$script = $script . '<tr id = "group_table_a">';
 		$script = $script . '<th>Team</th>';
 		$script = $script . '<th>Points</th>';
 		$script = $script . '<th>Games</th>';
@@ -88,6 +88,17 @@
 		$script = $script . '<th>Goals</th>';
 		$script = $script . '<th>Against</th>';
 		$script = $script . '<th>Difference</th>';
+		$script = $script . '</tr>';
+		$script = $script . '<tr id = "group_table_b">';
+		$script = $script . '<th>Team</th>';
+		$script = $script . '<th>P</th>';
+		$script = $script . '<th>G</th>';
+		$script = $script . '<th>W</th>';
+		$script = $script . '<th>D</th>';
+		$script = $script . '<th>L</th>';
+		$script = $script . '<th>G</th>';
+		$script = $script . '<th>A</th>';
+		$script = $script . '<th>Di</th>';
 		$script = $script . '</tr>';
 		$script = $script . '</thead>';
 		$script = $script . '<tbody>';		
