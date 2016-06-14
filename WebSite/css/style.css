@@ -1,6 +1,6 @@
 body
 {
-	background-color: #00796B;
+	background-color: #01579b;
 	font­size: 400px; 
 	font­size: 3rem;
 	margin: auto;
@@ -11,8 +11,8 @@ p
 	text-align: center;
     color: #FFFFFF;
 	font-size: 4rem;
+	padding: 0;
 	margin: 0;
-    padding: 0;	
 }
 ul
 {
@@ -20,14 +20,13 @@ ul
 	padding: 0;
 	margin: 0;
 }​
-li
+ul li
 {
 	list-style-type: none;
-	margin: 0;
 }
 a:hover
 {
-	background-color: #0096FF;	
+	background-color: #e65500;	
 }
 a:visited 
 {
@@ -35,22 +34,27 @@ a:visited
 }
 a
 {
+	background-color: maroon;
 	color: #FFFFFF;
+	display: inline-block;
 	font-size: 2rem;
 	text-decoration: none;
+	margin: 0.2rem;
+	padding: 1rem;
 }
 #Tournaments
 {
-	background-color: #009688;
-	padding: 2rem;
+	background-color: #01579b;
+	padding: 0;
 }
 .Social
 {
-	background-color: #009688;
+	background-color: #01579b;
 	padding: 1rem;	
 }
 .Social a
 {
+	margin: 0;
 	padding: 1rem;
 }
 #facebook
