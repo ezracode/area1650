@@ -317,7 +317,7 @@
 			$script = $script . '<td colspan="2">'               . $data[0]  . '</td><td colspan="2">'               . $data[1]  . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
-			$script = $script . '<tdcolspan="2">Games</td><tdcolspan="2">'                 . $data[4]  . '</td>';
+			$script = $script . '<td colspan="2">Games</td><td colspan="2">'                 . $data[4]  . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
 			$script = $script . '<td>Points</td><td>'                . $data[2]  . '</td><td>Points</td><td>'                . $data[3]  . '</td>';
