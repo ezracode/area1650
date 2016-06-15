@@ -116,7 +116,8 @@ td, th
 }
 th
 {
-    font-weight: bold;
+    background-color: #0096FF;
+	font-weight: bold;
 }
 caption 
 {

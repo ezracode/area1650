@@ -241,7 +241,7 @@
 			$script = $script . '<td>Likelihood of Draw</td><td>'    . $data[10] . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
-			$script = $script . '<td>Likelihood of Defeat</td><td>'  . $data[10] . '</td>';
+			$script = $script . '<td>Likelihood of Defeat</td><td>'  . $data[11] . '</td>';
 			$script = $script . '</tr>';
 		}
 		$script = $script . '</table>';
@@ -314,10 +314,10 @@
 		{
 			$record = 1;
 			$script = $script . '<tr>';
-			$script = $script . '<td>Country</td><td>'               . $data[0]  . '</td><td>Country</td><td>'               . $data[1]  . '</td>';
+			$script = $script . '<td colspan="2">'               . $data[0]  . '</td><td colspan="2">'               . $data[1]  . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
-			$script = $script . '<td>Games</td><td>'                 . $data[4]  . '</td>';
+			$script = $script . '<tdcolspan="2">Games</td><tdcolspan="2">'                 . $data[4]  . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
 			$script = $script . '<td>Points</td><td>'                . $data[2]  . '</td><td>Points</td><td>'                . $data[3]  . '</td>';
@@ -326,19 +326,19 @@
 			$script = $script . '<td>Games Won</td><td>'             . $data[7]  . '</td><td>Games Won</td><td>'             . $data[5]  . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
-			$script = $script . '<td>Games Draw</td><td>'            . $data[6]  . '</td>';
+			$script = $script . '<td colspan="2">Games Draw</td><td colspan="2">'            . $data[6]  . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
 			$script = $script . '<td>Goals Scored</td><td>'          . $data[8]  . '</td><td>Goals Scored</td><td>'          . $data[9]  . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
-			$script = $script . '<td>Goals Difference</td><td>'      . $data[10] . '</td>';
+			$script = $script . '<td colspan="2">Goals Difference</td><td colspan="2">'      . $data[10] . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
 			$script = $script . '<td>Likelihood of Victory</td><td>' . $data[13] . '</td><td>Likelihood of Victory</td><td>' . $data[11] . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
-			$script = $script . '<td>Likelihood of Draw</td><td>'    . $data[12] . '</td></td>';
+			$script = $script . '<td colspan="2">Likelihood of Draw</td><td colspan="2">'    . $data[12] . '</td></td>';
 			$script = $script . '</tr>';
 		}
 		$script = $script . '</table>';
@@ -392,32 +392,32 @@
 		while ($data = $resultado->fetch())
 		{
 			$script = $script . '<tr>';
-			$script = $script . '<td>Match Date: ' . $data[6] . '</td>';
+			$script = $script . '<th colspan="4">Match Date: ' . $data[6] . '</th>';
 			$script = $script . '</tr>';
 
 			$script = $script . '<tr>';
-			$script = $script . '<td>Country</td><td>' . $data[0] . '</td><td>Country</td><td>' . $data[1] . '</td>';
+			$script = $script . '<td colspan="2">' . $data[0] . '</td><td colspan="2">' . $data[1] . '</td>';
 			$script = $script . '</tr>';
 
 			$script = $script . '<tr>';
-			$script = $script . '<td></td><td>' . $data[4] . '</td><td></td><td>' . $data[5] . '</td>';
+			$script = $script . '<td colspan="2">' . $data[4] . '</td><td colspan="2">' . $data[5] . '</td>';
 			$script = $script . '</tr>';
 			
 			$script = $script . '<tr>';
-			$script = $script . '<td>Game type</td><td>' . $data[2] . '</td>';
+			$script = $script . '<td colspan="2">Game type</td><td colspan="2">' . $data[2] . '</td>';
 			$script = $script . '</tr>';
 
 			$script = $script . '<tr>';
-			$script = $script . '<td>Time Type</td><td>' . $data[3] . '</td>';
+			$script = $script . '<td colspan="2">Time Type</td><td colspan="2">' . $data[3] . '</td>';
 			$script = $script . '</tr>';
 
 		    if ($data[7] > -1 && $data[8] > -1)
 			{
 				$script = $script . '<tr>';
-				$script = $script . '<td>Time Type</td><td>' . $data[9] . '</td>';
+				$script = $script . '<td colspan="2">Time Type</td><td colspan="2">' . $data[9] . '</td>';
 				$script = $script . '</tr>';
 				$script = $script . '<tr>';
-				$script = $script . '<td></td><td>' . $data[7] . '</td><td></td><td>' . $data[8] . '</td>';
+				$script = $script . '<td colspan="2">' . $data[7] . '</td><td colspan="2">' . $data[8] . '</td>';
 				$script = $script . '</tr>';
 			}
 		}

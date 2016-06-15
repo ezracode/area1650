@@ -309,10 +309,10 @@
 		{
 			$record = 1;
 			$script = $script . '<tr>';
-			$script = $script . '<td>Country</td><td>'               . $namea   . '</td><td>Country</td><td>'               . $nameb    . '</td>';
+			$script = $script . '<td colspan="2">'               . $namea   . '</td><td colspan="2">'               . $nameb    . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
-			$script = $script . '<td>Games</td><td>'                 . $games   . '</td>';
+			$script = $script . '<td colspan="2">Games</td><td colspan="2">'                 . $games   . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
 			$script = $script . '<td>Points</td><td>'                . $pointsa . '</td><td>Points</td><td>'                . $pointsb . '</td>';
@@ -321,19 +321,19 @@
 			$script = $script . '<td>Games Won</td><td>'             . $wina    . '</td><td>Games Won</td><td>'             . $winb    . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
-			$script = $script . '<td>Games Draw</td><td>'            . $draw   . '</td>';
+			$script = $script . '<td colspan="2">Games Draw</td><td colspan="2">'            . $draw   . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
 			$script = $script . '<td>Goals Scored</td><td>'          . $goalsa  . '</td><td>Goals Scored</td><td>'          . $goalsb  . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
-			$script = $script . '<td>Goals Difference</td><td>'      . $diff   . '</td>';
+			$script = $script . '<td colspan="2">Goals Difference</td><td colspan="2">'      . $diff   . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
 			$script = $script . '<td>Likelihood of Victory</td><td>' . $pa     . '</td><td>Likelihood of Victory</td><td>'  . $pb      . '</td>';
 			$script = $script . '</tr>';
 			$script = $script . '<tr>';
-			$script = $script . '<td>Likelihood of Draw</td><td>'    . $pd     . '</td></td>';
+			$script = $script . '<td colspan="2">Likelihood of Draw</td><td colspan="2">'    . $pd     . '</td></td>';
 			$script = $script . '</tr>';
 		}
 		$script = $script . '</table>';
@@ -382,32 +382,32 @@
 		while ($resultado->fetch())
 		{
 			$script = $script . '<tr>';
-			$script = $script . '<td>Match Date: ' . $matchdate . '</td>';
+			$script = $script . '<th colspan="4">Match Date: ' . $matchdate . '</th>';
 			$script = $script . '</tr>';
 
 			$script = $script . '<tr>';
-			$script = $script . '<td>Country</td><td>' . $namea . '</td><td>Country</td><td>' . $nameb . '</td>';
+			$script = $script . '<td colspan="2">' . $namea . '</td><td colspan="2">' . $nameb . '</td>';
 			$script = $script . '</tr>';
 
 			$script = $script . '<tr>';
-			$script = $script . '<td></td><td>' . $goalsa . '</td><td></td><td>' . $goalsb . '</td>';
+			$script = $script . '<td colspan="2">' . $goalsa . '</td><td colspan="2">' . $goalsb . '</td>';
 			$script = $script . '</tr>';
 			
 			$script = $script . '<tr>';
-			$script = $script . '<td>Game type</td><td>' . $gametype . '</td>';
+			$script = $script . '<td colspan="2">Game type</td><td colspan="2">' . $gametype . '</td>';
 			$script = $script . '</tr>';
 
 			$script = $script . '<tr>';
-			$script = $script . '<td>Time Type</td><td>' . $timetype . '</td>';
+			$script = $script . '<td colspan="2">Time Type</td><td colspan="2">' . $timetype . '</td>';
 			$script = $script . '</tr>';
 
 		    if ($goalsd > -1 && $goalse > -1)
 			{
 				$script = $script . '<tr>';
-				$script = $script . '<td>Time Type</td><td>' . $penalties . '</td>';
+				$script = $script . '<td colspan="2">Time Type</td><td colspan="2">' . $penalties . '</td>';
 				$script = $script . '</tr>';
 				$script = $script . '<tr>';
-				$script = $script . '<td></td><td>' . $goalsd . '</td><td></td><td>' . $goalse . '</td>';
+				$script = $script . '<td colspan="2">' . $goalsd . '</td><td colspan="2">' . $goalse . '</td>';
 				$script = $script . '</tr>';
 			}
 		}
