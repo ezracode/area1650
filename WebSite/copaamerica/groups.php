@@ -415,4 +415,41 @@
 		$mysqli->close();
 		return $script;
 	}
+
+	function knockout_stage($year, $stage)
+	{
+		$mysqli = new mysqli('127.0.0.1', 'areanet_admin', 'erSS1979_', 'areanet_copaamerica');
+		if ($mysqli->connect_errno) 
+		{
+			echo 'Falló la conexión a MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
+		}
+		
+		$query = 'select b.matchdate matchdate, c.squad squada, d.name namea, e.squad squadb, f.name nameb from ';
+		$query = $query . 'game b inner join game_score c '; 
+		$query = $query . 'inner join country d inner join game_score e inner join country f ';
+		$query = $query . 'on b.matchid = c.matchid and c.time_type = e.time_type '; 
+		$query = $query . 'and c.id = (select min(id) from game_score where matchid = c.matchid) ';
+		$query = $query . 'and c.matchid = e.matchid and c.squad <> e.squad ';
+		$query = $query . 'and year (b.matchdate) = ' . $year . ' and ';
+		$query = $query . 'b.game_type = ' . $stage . ' and c.time_type = 2 and c.squad = d.code and e.squad = f.code ';
+		$query = $query . 'order by b.matchid';	
+
+		$resultado = $mysqli->query($query);
+		$script = '<table>';
+		for ($num_fila = 0; $num_fila <= $resultado->num_rows - 1; $num_fila++) 
+		{
+			$resultado->data_seek($num_fila);
+			$fila = $resultado->fetch_assoc();
+			$script = $script . '<tr>';
+			$script = $script . '<td>' . $fila['matchdate'] . '</td>';
+			$script = $script . '<td>' . $fila['namea'] . '</td>';
+			$script = $script . '<td>vs</td>';
+			$script = $script . '<td>' . $fila['nameb'] . '</td>';
+			$script = $script . '<td><a href="http://www.area1650.net/copaamerica/match_stats.html?squada=' . $fila['squada'] . '&squadb=' . $fila['squadb'] . '">stats</a></td>';
+			$script = $script . '</tr>';
+		}
+		$script = $script . '</table>';
+		$mysqli->close();
+		return $script;
+	}
 ?>

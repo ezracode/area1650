@@ -155,6 +155,16 @@ and a.squad = c.squad and a.tournament = 2016 and year (b.matchdate) = a.tournam
  b.game_type = 2 and c.time_type = 2 and c.squad = d.code and e.squad = f.code 
  order by b.matchid
  
+ /*Knockout - stage*/
+select c.matchid, c.squad, d.name, e.squad, f.name from 
+game b inner join game_score c inner join country d inner join game_score e inner join country f
+on b.matchid = c.matchid and c.time_type = e.time_type 
+and c.id = (select min(id) from game_score where matchid = c.matchid)
+and c.matchid = e.matchid and c.squad <> e.squad
+and year (b.matchdate) = 2016 and 
+b.game_type = 3 and c.time_type = 2 and c.squad = d.code and e.squad = f.code 
+order by b.matchid
+ 
  /*Informacion por equipo*/
  select 
     a.name, 
