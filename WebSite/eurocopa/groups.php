@@ -132,7 +132,8 @@
 			echo 'Falló la conexión a MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
 		}
 		
-		$query = 'select b.matchdate matchdate, c.squad squada, d.name namea, e.squad squadb, f.name nameb from ';
+		$query = 'select b.matchdate matchdate, c.squad squada, d.name namea, e.squad squadb, f.name nameb, ';
+		$query = $query . 'ifnull(c.goals, "-") ftgsquada, ifnull(e.goals, "-") ftgsquadb, ifnull(g.goals, "-") htgsquada, ifnull(h.goals, "-") htgsquadb from ';
 		$query = $query . 'group_stage a inner join game b inner join game_score c '; 
 		$query = $query . 'inner join country d inner join game_score e inner join country f ';
 		$query = $query . 'on b.matchid = c.matchid and c.time_type = e.time_type '; 
@@ -141,10 +142,21 @@
 		$query = $query . 'and a.squad = c.squad and a.tournament = ' . $year;
 		$query = $query . ' and year (b.matchdate) = a.tournament and a.group_code = \'' . $group . '\' and ';
 		$query = $query . 'b.game_type = 2 and c.time_type = 2 and c.squad = d.code and e.squad = f.code ';
+		$query = $query . 'left join game_score g ';
+		$query = $query . ' on g.time_type = 1 and g.squad = c.squad and g.matchid = c.matchid ';
+		$query = $query . 'left join game_score h ';
+		$query = $query . ' on h.time_type = 1 and h.squad = e.squad and h.matchid = e.matchid ';
 		$query = $query . 'order by b.matchid';	
 
 		$resultado = $mysqli->query($query);
 		$script = '<table>';
+		$script = $script . '<tr>';
+		$script = $script . '<th>Match Date</th>';
+		$script = $script . '<th colspan="3">Match</th>';
+		$script = $script . '<th colspan="2">FT</th>';
+		$script = $script . '<th colspan="2">HT</th>';
+		$script = $script . '<th></th>';
+		$script = $script . '</tr>';
 		for ($num_fila = 0; $num_fila <= $resultado->num_rows - 1; $num_fila++) 
 		{
 			$resultado->data_seek($num_fila);
@@ -154,6 +166,10 @@
 			$script = $script . '<td>' . $fila['namea'] . '</td>';
 			$script = $script . '<td>vs</td>';
 			$script = $script . '<td>' . $fila['nameb'] . '</td>';
+			$script = $script . '<td>' . $fila['ftgsquada'] . '</td>';
+			$script = $script . '<td>' . $fila['ftgsquadb'] . '</td>';
+			$script = $script . '<td>' . $fila['htgsquada'] . '</td>';
+			$script = $script . '<td>' . $fila['htgsquadb'] . '</td>';
 			$script = $script . '<td><a href="http://www.area1650.net/eurocopa/match_stats.html?squada=' . $fila['squada'] . '&squadb=' . $fila['squadb'] . '">stats</a></td>';
 			$script = $script . '</tr>';
 		}
@@ -424,6 +440,58 @@
 		$script = $script . '</table>';
 		$conn = null;
 
+		return $script;
+	}
+	function knockout_stage($year, $stage)
+	{
+		$mysqli = new mysqli('127.0.0.1', 'areanet_admin', 'erSS1979_', 'areanet_eurocopa');
+		if ($mysqli->connect_errno) 
+		{
+			echo 'Falló la conexión a MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
+		}
+
+		$query = 'select b.matchdate matchdate, c.squad squada, d.name namea, e.squad squadb, f.name nameb, ';
+		$query = $query . 'ifnull(c.goals, "-") ftgsquada, ifnull(e.goals, "-") ftgsquadb, ifnull(g.goals, "-") htgsquada, ifnull(h.goals, "-") htgsquadb from ';
+		$query = $query . 'game b inner join game_score c '; 
+		$query = $query . 'inner join country d inner join game_score e inner join country f ';
+		$query = $query . 'on b.matchid = c.matchid and c.time_type = e.time_type '; 
+		$query = $query . 'and c.id = (select min(id) from game_score where matchid = c.matchid) ';
+		$query = $query . 'and c.matchid = e.matchid and c.squad <> e.squad ';
+		$query = $query . 'and year (b.matchdate) = ' . $year . ' and ';
+		$query = $query . 'b.game_type = ' . $stage . ' and c.time_type = 2 and c.squad = d.code and e.squad = f.code ';
+		$query = $query . 'left join game_score g ';
+		$query = $query . ' on g.time_type = 1 and g.squad = c.squad and g.matchid = c.matchid ';
+		$query = $query . 'left join game_score h ';
+		$query = $query . ' on h.time_type = 1 and h.squad = e.squad and h.matchid = e.matchid ';
+		$query = $query . 'order by b.matchid';	
+
+		$resultado = $mysqli->query($query);
+		$script = '<table>';
+		$script = $script . '<tr>';
+		$script = $script . '<th>Match Date</th>';
+		$script = $script . '<th colspan="3">Match</th>';
+		$script = $script . '<th colspan="2">FT</th>';
+		$script = $script . '<th colspan="2">HT</th>';
+		$script = $script . '<th></th>';
+		$script = $script . '</tr>';
+		for ($num_fila = 0; $num_fila <= $resultado->num_rows - 1; $num_fila++) 
+		{
+			$resultado->data_seek($num_fila);
+			$fila = $resultado->fetch_assoc();
+			$script = $script . '<tr>';
+			$script = $script . '<td>' . $fila['matchdate'] . '</td>';
+			$script = $script . '<td>' . $fila['namea'] . '</td>';
+			$script = $script . '<td>vs</td>';
+			$script = $script . '<td>' . $fila['nameb'] . '</td>';
+			$script = $script . '<td>' . $fila['ftgsquada'] . '</td>';
+			$script = $script . '<td>' . $fila['ftgsquadb'] . '</td>';
+			$script = $script . '<td>' . $fila['htgsquada'] . '</td>';
+			$script = $script . '<td>' . $fila['htgsquadb'] . '</td>';
+			$script = $script . '<td><a href="http://www.area1650.net/eurocopa/match_stats.html?squada=' . $fila['squada'] . '&squadb=' . $fila['squadb'] . '">stats</a></td>';
+			$script = $script . '</tr>';
+		}
+		$script = $script . '</table>';
+		$mysqli->close();
 		return $script;
 	}
 ?>
