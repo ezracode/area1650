@@ -1,8 +1,11 @@
+html
+{
+	font-size: 12px; 
+}
 body
 {
 	background-color: #01579b;
-	font­size: 400px; 
-	font­size: 3rem;
+	font-size: 3rem;
 	margin: auto;
 	text-align: center;	
 }
