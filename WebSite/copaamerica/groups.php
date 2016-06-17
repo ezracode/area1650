@@ -371,7 +371,7 @@
 		{
 			echo 'Falló la conexión a MySQL: (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error;
 		}
-		$query = ' select i.name namea, j.name  nameb, f.name gametype, g.name timetype, a.goals goalsa, b.goals goalsb, c.matchdate matchdate, ifnull(d.goals,-1) goalsd, ifnull(e.goals, -1) goalse, ifnull(h.name, \'\') penalties from game_score a inner join game_score b inner join game c';
+		$query = ' select i.name namea, j.name  nameb, f.name gametype, g.name timetype, ifnull(a.goals, "-") goalsa, ifnull(b.goals, "-") goalsb, c.matchdate matchdate, ifnull(d.goals,-1) goalsd, ifnull(e.goals, -1) goalse, ifnull(h.name, \'\') penalties from game_score a inner join game_score b inner join game c';
 		$query = $query . ' on a.matchid = b.matchid and a.time_type = b.time_type and'; 
 		$query = $query . ' a.time_type = (select max(time_type) from game_score where matchid = b.matchid and time_type in (2,3,4,6))';
 		$query = $query . ' and a.matchid = c.matchid and c.matchdate < now()';
