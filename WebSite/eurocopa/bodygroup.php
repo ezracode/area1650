@@ -29,13 +29,13 @@
 			$script = $script . '						</div>';
 		}
 		$script = $script . '						</div>';
-/*
-		$script = $script . '						<div id="quarter-final">';
-		$script = $script . '							<p>Quarter-finals</p>';
-		$stage = 3;
+
+		$script = $script . '						<div id="round-of-16">';
+		$script = $script . '							<p>Round of 16</p>';
+		$stage = 9;
 		$script = $script . knockout_stage($year, $stage);
 		$script = $script . '						</div>';
-*/
+
 		$script = $script . '					</div>';
 		$script = $script . '				</body>';
 		$script = $script . '    </html>';
