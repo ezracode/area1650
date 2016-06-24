@@ -18,6 +18,10 @@ create table if not exists group_stage(
 
 create index if not exists group_stage_i on group_stage (tournament, group_code);
 
+alter table group_stage add column group_order smallint;
+update group_stage set group_order = 2 where id = 129;
+update group_stage set group_order = 1 where id = 130;
+
 create table if not exists time_type (
      id smallint primary key,
      name varchar(25) charset utf8

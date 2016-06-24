@@ -89,7 +89,7 @@ left join game_score g
     on b.matchid = g.matchid and b.time_type = g.time_type and b.squad <> g.squad
 where b.time_type in (2, 4, 6) 
 group by a.code
-order by group_code, points desc, diff desc, goals desc, again desc
+order by group_code, points desc, group_order, diff desc, goals desc, again desc
 
 /*Tabla por campeonato desde 1975 actualidad*/
 select 

@@ -73,7 +73,7 @@
 		$query = $query . '     on b.matchid = g.matchid and b.time_type = g.time_type and b.squad <> g.squad';
 		$query = $query . ' where b.time_type in (2, 4, 6)'; 
 		$query = $query . ' group by a.code';
-		$query = $query . ' order by group_code, points desc, diff desc, goals desc, again desc';
+		$query = $query . ' order by group_code, points desc, group_order, diff desc, goals desc, again desc';
 		
 		$resultado = $mysqli->query($query);
 		$script = '<table>';
