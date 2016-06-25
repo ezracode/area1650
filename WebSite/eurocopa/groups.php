@@ -196,7 +196,7 @@
 		$query = $query . ' (count(f.squad) / count(c.squad)) pl ';
 		$query = $query . ' from ';
 		$query = $query . ' current_country a inner join game_score b inner join game h ';
-		$query = $query . '     on a.newsquad = :country and a.oldsquad = b.squad and b.matchid = h.matchid and b.time_type in (2,3,4,6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8) and h.matchdate < now()';
+		$query = $query . '     on a.newsquad = :country and a.oldsquad = b.squad and b.matchid = h.matchid and b.time_type in (2,3,4,6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8, 9) and h.matchdate < now()';
 		$query = $query . ' left join game_score c';
 		$query = $query . '     on  b.time_type = 2 and b.matchid = c.matchid and b.time_type = c.time_type and b.squad = c.squad';
 		$query = $query . ' left join game_score d';
@@ -301,7 +301,7 @@
 		$query = $query . ' from ';
 		$query = $query . ' current_country a inner join game_score b inner join game h inner join game_score j inner join current_country l';
 		$query = $query . '     on a.newsquad = :squada and a.oldsquad = b.squad and b.matchid = h.matchid and b.matchid = j.matchid and l.newsquad = :squadb and l.oldsquad = j.squad and b.time_type = j.time_type';
-		$query = $query . ' 	 and b.time_type in (2,3,4,6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8) and h.matchdate < now()';
+		$query = $query . ' 	 and b.time_type in (2,3,4,6) and h.game_type in (1, 2, 3, 4, 5, 6, 7, 8, 9) and h.matchdate < now()';
 		$query = $query . ' left join game_score c';
 		$query = $query . '     on  b.time_type = 2 and b.matchid = c.matchid and b.time_type = c.time_type and l.newsquad = :squadb and l.oldsquad = c.squad';
 		$query = $query . ' left join game_score d';
