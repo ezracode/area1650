@@ -451,8 +451,12 @@
 		}
 
 		$query = 'select b.matchdate matchdate, c.squad squada, d.name namea, e.squad squadb, f.name nameb, ';
-		$query = $query . 'ifnull(c.goals, "-") ftgsquada, ifnull(e.goals, "-") ftgsquadb, ifnull(g.goals, "-") htgsquada, ifnull(h.goals, "-") htgsquadb from ';
-		$query = $query . 'game b inner join game_score c '; 
+		$query = $query . 'ifnull(c.goals, "-") ftgsquada, ifnull(e.goals, "-") ftgsquadb, '; 
+		$query = $query . 'ifnull(g.goals, "-") htgsquada, ifnull(h.goals, "-") htgsquadb, ';
+		$query = $query . 'ifnull(i.goals, "-") ot2gsquada, ifnull(j.goals, "-") ot2gsquadb, ';
+		$query = $query . 'ifnull(k.goals, "-") ot1gsquada, ifnull(l.goals, "-") ot1gsquadb, ';
+		$query = $query . 'ifnull(m.goals, "-") pgsquada, ifnull(n.goals, "-") pgsquadb ';
+		$query = $query . 'from game b inner join game_score c '; 
 		$query = $query . 'inner join country d inner join game_score e inner join country f ';
 		$query = $query . 'on b.matchid = c.matchid and c.time_type = e.time_type '; 
 		$query = $query . 'and c.id = (select min(id) from game_score where matchid = c.matchid) ';
@@ -463,6 +467,18 @@
 		$query = $query . ' on g.time_type = 1 and g.squad = c.squad and g.matchid = c.matchid ';
 		$query = $query . 'left join game_score h ';
 		$query = $query . ' on h.time_type = 1 and h.squad = e.squad and h.matchid = e.matchid ';
+		$query = $query . 'left join game_score i ';
+		$query = $query . ' on i.time_type = 4 and i.squad = c.squad and i.matchid = c.matchid ';
+		$query = $query . 'left join game_score j ';
+		$query = $query . ' on j.time_type = 4 and j.squad = e.squad and j.matchid = e.matchid ';
+		$query = $query . 'left join game_score k ';
+		$query = $query . ' on k.time_type = 3 and k.squad = c.squad and k.matchid = c.matchid ';
+		$query = $query . 'left join game_score l ';
+		$query = $query . ' on l.time_type = 3 and l.squad = e.squad and l.matchid = e.matchid ';
+		$query = $query . 'left join game_score m ';
+		$query = $query . ' on m.time_type = 7 and m.squad = c.squad and m.matchid = c.matchid ';
+		$query = $query . 'left join game_score n ';
+		$query = $query . ' on n.time_type = 7 and n.squad = e.squad and n.matchid = e.matchid ';
 		$query = $query . 'order by b.matchid';	
 
 		$resultado = $mysqli->query($query);
@@ -489,6 +505,38 @@
 			$script = $script . '<td>' . $fila['htgsquadb'] . '</td>';
 			$script = $script . '<td><a href="http://www.area1650.net/eurocopa/match_stats.html?squada=' . $fila['squada'] . '&squadb=' . $fila['squadb'] . '">stats</a></td>';
 			$script = $script . '</tr>';
+			if ($fila['ot2gsquada'] <> "-")
+			{
+				$script = $script . '<tr>';
+				$script = $script . '<th></th>';
+				$script = $script . '<th colspan="3">Overtime</th>';
+				$script = $script . '<th colspan="2">OT2</th>';
+				$script = $script . '<th colspan="2">OT1</th>';
+				$script = $script . '<th></th>';
+				$script = $script . '</tr>';
+				$script = $script . '<tr>';
+				$script = $script . '<td colspan="4"></th>';
+				$script = $script . '<td>' . $fila['ot2gsquada'] . '</td>';
+				$script = $script . '<td>' . $fila['ot2gsquadb'] . '</td>';
+				$script = $script . '<td>' . $fila['ot1gsquada'] . '</td>';
+				$script = $script . '<td>' . $fila['ot1gsquadb'] . '</td>';
+				$script = $script . '<td></td>';
+				$script = $script . '</tr>';
+			}
+			if ($fila['pgsquada'] <> "-")
+			{
+				$script = $script . '<tr>';
+				$script = $script . '<th></th>';
+				$script = $script . '<th colspan="3">Penalties</th>';
+				$script = $script . '<th colspan="5"></th>';
+				$script = $script . '</tr>';
+				$script = $script . '<tr>';
+				$script = $script . '<td colspan="4"></th>';
+				$script = $script . '<td>' . $fila['pgsquada'] . '</td>';
+				$script = $script . '<td>' . $fila['pgsquadb'] . '</td>';
+				$script = $script . '<td colspan="3"></th>';				
+				$script = $script . '</tr>';
+			}
 		}
 		$script = $script . '</table>';
 		$mysqli->close();

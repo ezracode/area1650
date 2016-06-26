@@ -145,6 +145,39 @@ from game_score a inner join game_score b inner join game c
   left join current_country j on b.squad = j.oldsquad
  where i.newsquad = 33 and j.newsquad = 40
  order by matchdate desc
+
+ /*Knockout - stage*/
+select b.matchdate matchdate, c.squad squada, d.name namea, e.squad squadb, f.name nameb, 
+ifnull(c.goals, "-") ftgsquada, ifnull(e.goals, "-") ftgsquadb, 
+ifnull(g.goals, "-") htgsquada, ifnull(h.goals, "-") htgsquadb,
+ifnull(i.goals, "-") ot2gsquada, ifnull(j.goals, "-") ot2gsquadb,
+ifnull(k.goals, "-") ot1gsquada, ifnull(l.goals, "-") ot1gsquadb,
+ifnull(m.goals, "-") pgsquada, ifnull(n.goals, "-") pgsquadb
+from 
+game b inner join game_score c  
+inner join country d inner join game_score e inner join country f 
+on b.matchid = c.matchid and c.time_type = e.time_type  
+and c.id = (select min(id) from game_score where matchid = c.matchid) 
+and c.matchid = e.matchid and c.squad <> e.squad 
+and year (b.matchdate) = 2016 and 
+b.game_type = 3 and c.time_type = 2 and c.squad = d.code and e.squad = f.code 
+left join game_score g 
+ on g.time_type = 1 and g.squad = c.squad and g.matchid = c.matchid 
+left join game_score h 
+ on h.time_type = 1 and h.squad = e.squad and h.matchid = e.matchid 
+left join game_score i 
+ on i.time_type = 4 and i.squad = c.squad and i.matchid = c.matchid 
+left join game_score j 
+ on j.time_type = 4 and j.squad = e.squad and j.matchid = e.matchid 
+left join game_score k 
+ on k.time_type = 3 and k.squad = c.squad and k.matchid = c.matchid 
+left join game_score l 
+ on l.time_type = 3 and l.squad = e.squad and l.matchid = e.matchid 
+left join game_score m 
+ on m.time_type = 7 and m.squad = c.squad and m.matchid = c.matchid 
+left join game_score n 
+ on n.time_type = 7 and n.squad = e.squad and n.matchid = e.matchid 
+order by b.matchid
  
 /*Participacion por pais*/
 select 
@@ -352,5 +385,3 @@ and a.goals = b.goals
   
  where i.newsquad = 39 and j.newsquad <> 39
  order by rank, matchdate desc
-
-
