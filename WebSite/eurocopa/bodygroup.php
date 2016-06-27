@@ -36,6 +36,12 @@
 		$script = $script . knockout_stage($year, $stage);
 		$script = $script . '						</div>';
 
+		$script = $script . '						<div id="quarter-finals">';
+		$script = $script . '							<p>Quarter Finals</p>';
+		$stage = 3;
+		$script = $script . knockout_stage($year, $stage);
+		$script = $script . '						</div>';
+		
 		$script = $script . '					</div>';
 		$script = $script . '				</body>';
 		$script = $script . '    </html>';
