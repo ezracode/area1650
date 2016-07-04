@@ -13,4 +13,10 @@ insert into game_type (id, name) values
 (12, 'Final Second Place'),
 (13, 'Bronze Medal Match'),
 (14, 'Gold Medal Match'),
-(15, 'First Round');
+(15, 'First Round'),
+(16, 'Consolation First Round'),
+(17, 'Consolation Semi-Final'),
+(18, 'Consolation Final'),
+(19, 'Second Place Tournament First Round'),
+(20, 'Second Place Tournament Second Round'),
+(21, 'Eight Place Match');
