@@ -48,6 +48,12 @@
 		$script = $script . knockout_stage($year, $stage);
 		$script = $script . '						</div>';
 
+		$script = $script . '						<div id="final">';
+		$script = $script . '							<p>Final</p>';
+		$stage = 6;
+		$script = $script . knockout_stage($year, $stage);
+		$script = $script . '						</div>';
+		
 		$script = $script . '					</div>';
 		$script = $script . '				</body>';
 		$script = $script . '    </html>';
