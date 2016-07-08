@@ -52,13 +52,15 @@ insert into country (code, name) values (353, 'Republic of Ireland');
 insert into country (code, name) values (93, 'Afghanistan');
 insert into country (code, name) values (91, 'India');
 insert into country (code, name) values (82, 'South Korea');
--------------------------------------------------------------------*/
 insert into country (code, name) values (7097, 'Soviet Union');
+insert into country (code, name) values (55, 'Brazil');
+insert into country (code, name) values (49228, 'West Germany');
+insert into country (code, name) values (599, 'Netherlands Antilles');
+-------------------------------------------------------------------*/
 insert into country (code, name) values (381, 'Serbia');
 insert into country (code, name) values (420, 'Czech Republic');
 insert into country (code, name) values (7, 'Russia');
 insert into country (code, name) values (4420, 'England');
-insert into country (code, name) values (49228, 'West Germany');
 insert into country (code, name) values (37517, 'Commonwealth of Independent States');
 insert into country (code, name) values (44141, 'Scotland');
 insert into country (code, name) values (385, 'Croatia');
