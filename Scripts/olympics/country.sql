@@ -62,6 +62,11 @@ insert into country (code, name) values (61, 'Australia');
 insert into country (code, name) values (62, 'Indonesia');
 insert into country (code, name) values (886, 'China Taipei');
 insert into country (code, name) values (216, 'Tunisia');
+insert into country (code, name) values (4930, 'East Germany');
+insert into country (code, name) values (98, 'Iran');
+insert into country (code, name) values (212, 'Morocco');
+insert into country (code, name) values (850, 'North Korea');
+insert into country (code, name) values (233, 'Ghana');
 -------------------------------------------------------------------*/
 insert into country (code, name) values (381, 'Serbia');
 insert into country (code, name) values (420, 'Czech Republic');
