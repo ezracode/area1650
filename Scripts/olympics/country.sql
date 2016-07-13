@@ -73,6 +73,18 @@ insert into country (code, name) values (234, 'Nigeria');
 insert into country (code, name) values (503, 'El Salvador');
 insert into country (code, name) values (972, 'Israel');
 insert into country (code, name) values (502, 'Guatemala');
+insert into country (code, name) values (60, 'Malaysia');
+insert into country (code, name) values (951, 'Burma');
+insert into country (code, name) values (249, 'Sudan');
+insert into country (code, name) values (1613, 'Canada');
+insert into country (code, name) values (53, 'Cuba');
+insert into country (code, name) values (260, 'Zambia');
+insert into country (code, name) values (58, 'Venezuela');
+insert into country (code, name) values (965, 'Kuwait');
+insert into country (code, name) values (213, 'Algeria');
+insert into country (code, name) values (963, 'Syria');
+insert into country (code, name) values (964, 'Iraq');
+insert into country (code, name) values (506, 'Costa Rica');
 -------------------------------------------------------------------*/
 insert into country (code, name) values (381, 'Serbia');
 insert into country (code, name) values (420, 'Czech Republic');
@@ -90,4 +102,3 @@ insert into country (code, name) values (421, 'Slovakia');
 insert into country (code, name) values (4428, 'Northern Ireland');
 insert into country (code, name) values (354, 'Iceland');
 /*-------------------------------------------------------------------*/
-insert into country (code, name) values (1613, 'Canada');

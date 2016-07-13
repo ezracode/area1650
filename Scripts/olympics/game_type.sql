@@ -21,3 +21,4 @@ insert into game_type (id, name) values
 (20, 'Second Place Tournament Second Round'),
 (21, 'Eight Place Match'),
 (22, 'Preliminary Round');
+(23, 'Second Round');
