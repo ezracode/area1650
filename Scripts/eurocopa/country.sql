@@ -28,7 +28,10 @@ insert into country (code, name) values (49, 'Germany');
 insert into country (code, name) values (359, 'Bulgaria');
 insert into country (code, name) values (386, 'Slovenia');
 insert into country (code, name) values (47, 'Norway');
-insert into country (code, name) values (38111, 'FR Yugoslavia');
+insert into country (code, name) values (381, 'Serbia');
+insert into country (code, name) values (38111, 'Serbia and Montenegro');
+insert into country (code, name) values (38220, 'FR Yugoslavia');
+insert into country (code, name) values (382, 'Montenegro');
 insert into country (code, name) values (371, 'Latvia');
 insert into country (code, name) values (43, 'Austria');
 insert into country (code, name) values (48, 'Poland');
@@ -38,5 +41,3 @@ insert into country (code, name) values (4429, 'Wales');
 insert into country (code, name) values (421, 'Slovakia');
 insert into country (code, name) values (4428, 'Northern Ireland');
 insert into country (code, name) values (354, 'Iceland');
-/*-------------------------------------------------------------------*/
-insert into country (code, name) values (1613, 'Canada');
