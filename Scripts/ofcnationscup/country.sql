@@ -8,3 +8,6 @@ insert into country (code, name) values (679, 'Fiji');
 insert into country (code, name) values (677, 'Solomon Island');
 insert into country (code, name) values (61, 'Australia');
 insert into country (code, name) values (675, 'Papua New Guinea');
+insert into country (code, name) values (6, 'Oceania');
+insert into country (code, name) values (678, 'Vanuatu');
+insert into country (code, name) values (682, 'Cook Islands');
