@@ -7,3 +7,5 @@ insert into tournament (code, country) values (2000, 689);
 insert into tournament (code, country) values (2002, 64);
 insert into tournament (code, country) values (2004, 61);
 insert into tournament (code, country) values (2008, 6);
+insert into tournament (code, country) values (2012, 677);
+insert into tournament (code, country) values (2016, 675);
