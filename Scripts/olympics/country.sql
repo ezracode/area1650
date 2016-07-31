@@ -105,10 +105,11 @@ insert into country (code, name) values (221, 'Senegal');
 insert into country (code, name) values (241, 'Gabon');
 insert into country (code, name) values (375, 'Belarus');
 insert into country (code, name) values (679, 'Fiji');
--------------------------------------------------------------------*/
 insert into country (code, name) values (7, 'Russia');
-insert into country (code, name) values (4420, 'England');
 insert into country (code, name) values (37517, 'Commonwealth of Independent States');
+insert into country (code, name) values (95, 'Myanmar');
+-------------------------------------------------------------------*/
+insert into country (code, name) values (4420, 'England');
 insert into country (code, name) values (44141, 'Scotland');
 insert into country (code, name) values (385, 'Croatia');
 insert into country (code, name) values (386, 'Slovenia');
