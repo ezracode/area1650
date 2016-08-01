@@ -16,7 +16,7 @@ create table if not exists group_stage(
 	 squad int
 );
 
-create index if not exists group_stage_i on group_stage (tournament, group_code);
+create index group_stage_i on group_stage (tournament, group_code);
 
 alter table group_stage add column group_order smallint;
 update group_stage set group_order = 2 where id = 129;
@@ -49,7 +49,7 @@ create table if not exists game_score (
      unique(id, matchid)
 );
 
-create index if not exists game_score_i on game_score (squad);
+create index game_score_i on game_score (squad);
 
 create view current_country as
 select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (4420, 44) and b.code = 44 
