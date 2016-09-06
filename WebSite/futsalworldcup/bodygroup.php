@@ -12,7 +12,7 @@
 		$script = $script . '						<div id="group-stage">';
 		$script = $script . '							<p>Group Stage</p>';
 
-		$array = array('A', 'B', 'C', 'D');
+		$array = array('A', 'B', 'C', 'D', 'E', 'F');
 		foreach ($array as &$group)
 		{
 			$script = $script . '						<div id="group">';
