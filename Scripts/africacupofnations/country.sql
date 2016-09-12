@@ -18,3 +18,11 @@ insert into country (code, name) values (243, 'Democratic Republic of the Congo'
 insert into country (code, name) values (213, 'Algeria');
 insert into country (code, name) values (2422228, 'Congo-Brazzaville');
 insert into country (code, name) values (242, 'Republic of the Congo');
+insert into country (code, name) values (237, 'Cameroon');
+insert into country (code, name) values (224, 'Guinea');
+insert into country (code, name) values (254, 'Kenya');
+insert into country (code, name) values (223, 'Mali');
+insert into country (code, name) values (228, 'Togo');
+insert into country (code, name) values (212, 'Morocco');
+insert into country (code, name) values (260, 'Zambia');
+insert into country (code, name) values (230, 'Mauritius');
