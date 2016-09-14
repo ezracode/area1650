@@ -26,3 +26,7 @@ insert into country (code, name) values (228, 'Togo');
 insert into country (code, name) values (212, 'Morocco');
 insert into country (code, name) values (260, 'Zambia');
 insert into country (code, name) values (230, 'Mauritius');
+insert into country (code, name) values (2265030, 'Upper Volta');
+insert into country (code, name) values (226, 'Burkina Faso');
+insert into country (code, name) values (255, 'Tanzania');
+insert into country (code, name) values (218, 'Libya');
