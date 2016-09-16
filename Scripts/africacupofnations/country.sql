@@ -30,3 +30,5 @@ insert into country (code, name) values (2265030, 'Upper Volta');
 insert into country (code, name) values (226, 'Burkina Faso');
 insert into country (code, name) values (255, 'Tanzania');
 insert into country (code, name) values (218, 'Libya');
+insert into country (code, name) values (265, 'Malawi');
+insert into country (code, name) values (258, 'Mozambique');
