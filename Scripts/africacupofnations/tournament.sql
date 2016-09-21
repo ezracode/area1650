@@ -23,3 +23,5 @@ insert into tournament (code, country) values (1998, 226);
 insert into tournament (code, country) values (2000, 233);
 insert into tournament (code, country) values (2000, 234);
 insert into tournament (code, country) values (2002, 223);
+insert into tournament (code, country) values (2004, 216);
+insert into tournament (code, country) values (2006, 20);
