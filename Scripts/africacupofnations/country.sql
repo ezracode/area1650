@@ -41,3 +41,7 @@ insert into country (code, name) values (264, 'Namibia');
 insert into country (code, name) values (250, 'Rwanda');
 insert into country (code, name) values (263, 'Zimbabwe');
 insert into country (code, name) values (229, 'Benin');
+insert into country (code, name) values (240, 'Equatorial Guinea');
+insert into country (code, name) values (227, 'Niger');
+insert into country (code, name) values (267, 'Botswana');
+insert into country (code, name) values (238, 'Cape Verde');
