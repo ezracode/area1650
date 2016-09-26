@@ -42,13 +42,13 @@
 		$script = $script . knockout_stage($year, $stage);
 		$script = $script . '						</div>';
 
-		/*
+		
 		$script = $script . '						<div id="semi-finals">';
 		$script = $script . '							<p>Semi Finals</p>';
 		$stage = 4;
 		$script = $script . knockout_stage($year, $stage);
 		$script = $script . '						</div>';
-		
+		/*
 		$script = $script . '						<div id="third-place">';
 		$script = $script . '							<p>Third Place</p>';
 		$stage = 13;
