@@ -1,0 +1,15 @@
+delete from tournament where code > 0;
+insert into tournament (code, country) values (1991, 506);
+insert into tournament (code, country) values (1993, 504);
+insert into tournament (code, country) values (1995, 503);
+insert into tournament (code, country) values (1997, 502);
+insert into tournament (code, country) values (1999, 506);
+insert into tournament (code, country) values (2001, 504);
+insert into tournament (code, country) values (2003, 507);
+insert into tournament (code, country) values (2005, 502);
+insert into tournament (code, country) values (2007, 503);
+insert into tournament (code, country) values (2009, 504);
+insert into tournament (code, country) values (2011, 507);
+insert into tournament (code, country) values (2013, 506);
+insert into tournament (code, country) values (2014, 1);
+insert into tournament (code, country) values (2017, 507);
