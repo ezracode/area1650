@@ -7,4 +7,4 @@ insert into country (code, name) values (505, 'Nicaragua');
 insert into country (code, name) values (502, 'Guatemala');
 insert into country (code, name) values (501, 'Belize');
 insert into country (code, name) values (506, 'Costa Rica');
-insert into country (code, name) values (1, 'United Statee');
+insert into country (code, name) values (1, 'United States');
