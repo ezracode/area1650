@@ -52,30 +52,10 @@ create table if not exists game_score (
 create index game_score_i on game_score (squad);
 
 create view current_country as
-select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (4420, 44) and b.code = 44 
+select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (2439, 2431, 2438, 243) and b.code = 243 
 union
-select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (331, 3399, 3398, 33) and b.code = 33 
+select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (2422228, 242) and b.code = 242 
 union
-select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (322, 32) and b.code = 32 
+select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (2265030, 226) and b.code = 226 
 union
-select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (1519, 1613) and b.code = 1613 
-union
-select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (13141850, 13141015, 1) and b.code = 1 
-union
-select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (90232, 90) and b.code = 90 
-union
-select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (30231, 3021, 30) and b.code = 30 
-union
-select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (4203, 42, 420) and b.code = 420 
-union
-select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (49, 49228, 4930) and b.code = 49 
-union
-select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (38, 38111, 38220, 381) and b.code = 381
-union
-select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (7812, 7097, 37517, 7) and b.code = 7
-union
-select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (3531, 353) and b.code = 353
-union
-select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (951, 95) and b.code = 95
-union
-select a.code as oldsquad, a.name as oldname, a.code as newsquad, a.name as newname from country a where a.code not in (4420, 44, 331, 3399, 3398, 33, 322, 32, 1519, 1613, 13141850, 13141015, 1, 90232, 90, 30231, 3021, 30, 4203, 42, 420, 49, 49228, 4930, 38, 38111, 38220, 381, 7812, 7097, 37517, 7, 3531, 353, 951, 95)
+select a.code as oldsquad, a.name as oldname, a.code as newsquad, a.name as newname from country a where a.code not in (2439, 2431, 2438, 243, 2422228, 242, 2265030, 226)
