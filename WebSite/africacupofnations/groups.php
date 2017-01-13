@@ -217,7 +217,7 @@
 		
 		$resultado = $conn->prepare($query);
 		$resultado->execute(array(':country' => $country));
-		$script = '<a href="http://www.area1650.net/v/page.php">Africa Cup of Nations Gabon 2017</a>';
+		$script = '<a href="http://www.area1650.net/africacupofnations/page.php">Africa Cup of Nations Gabon 2017</a>';
 		$script = $script .'<table>';
 		$record = 0;
 		while ($data = $resultado->fetch())
