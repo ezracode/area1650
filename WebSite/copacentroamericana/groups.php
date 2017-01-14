@@ -217,7 +217,7 @@
 		
 		$resultado = $conn->prepare($query);
 		$resultado->execute(array(':country' => $country));
-		$script = '<a href="http://www.area1650.net/copacentroamericana/page.php">Copa Centroamericana Costa Rica 2017</a>';
+		$script = '<a href="http://www.area1650.net/copacentroamericana/page.php">Copa Centroamericana Panama 2017</a>';
 		$script = $script .'<table>';
 		$record = 0;
 		while ($data = $resultado->fetch())
@@ -264,7 +264,7 @@
 		$conn = null;
 		if ($record == 0)
 		{
-			$script = '<a href="http://www.area1650.net/copacentroamericana/page.php">Copa Centroamericana Costa Rica 2017</a>';
+			$script = '<a href="http://www.area1650.net/copacentroamericana/page.php">Copa Centroamericana Panama 2017</a>';
 			$script = $script .'<p>No records for this team</p>';
 		}
 		return $script;
@@ -322,7 +322,7 @@
 		$resultado = $conn->prepare($query);
 		$resultado->execute(array(':squada' => $squada, ':squadb' => $squadb));
 
-		$script = '<a href="http://www.area1650.net/copacentroamericana/page.php">Copa Centroamericana Costa Rica 2017</a>';
+		$script = '<a href="http://www.area1650.net/copacentroamericana/page.php">Copa Centroamericana Panama 2017</a>';
 		$script = $script .'<table>';
 
 		$record = 0;
@@ -361,7 +361,7 @@
 		$conn = null;
 		if ($record == 0)
 		{
-			$script = '<a href="http://www.area1650.net/copacentroamericana/page.php">Copa Centroamericana Costa Rica 2017</a>';
+			$script = '<a href="http://www.area1650.net/copacentroamericana/page.php">Copa Centroamericana Panama 2017</a>';
 			$script = $script .'<p>No records for this match</p>';
 		}
 
