@@ -1,7 +1,7 @@
 delete from country where code > 0;
 /*-------------------------------------------------------------------*/
 insert into country (code, name) values (86, 'China');
-insert into country (code, name) values (886, 'China Taipei');
+insert into country (code, name) values (886, 'Chinese Taipei');
 insert into country (code, name) values (81, 'Japan');
 insert into country (code, name) values (82, 'South Korea');
 insert into country (code, name) values (1613, 'Canada');
