@@ -3,6 +3,12 @@ create table if not exists country (
      name varchar(125) charset utf8
 );
 
+create table if not exists team (
+     code mediumint primary key, 
+     name varchar(125) charset utf8,
+     country mediumint 
+);
+
 create table if not exists tournament (
      code smallint, 
 	 country mediumint,
