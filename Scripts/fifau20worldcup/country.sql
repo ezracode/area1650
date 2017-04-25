@@ -77,6 +77,10 @@ insert into country (code, name) values (226, 'Burkina Faso');
 insert into country (code, name) values (998, 'Uzbekistan');
 insert into country (code, name) values (229, 'Benin');
 insert into country (code, name) values (41, 'Switzerland');
+insert into country (code, name) values (242, 'Republic of the Congo');
+insert into country (code, name) values (962, 'Jordan');
+insert into country (code, name) values (220, 'Gambia');
+insert into country (code, name) values (850, 'North Korea');
 /*-------------------------------------------------------------------*/
 insert into country (code, name) values (4420, 'Upton Park F.C.');
 insert into country (code, name) values (331, 'USFSA XI');
@@ -105,7 +109,6 @@ insert into country (code, name) values (91, 'India');
 insert into country (code, name) values (599, 'Netherlands Antilles');
 insert into country (code, name) values (66, 'Thailand');
 insert into country (code, name) values (886, 'China Taipei');
-insert into country (code, name) values (850, 'North Korea');
 insert into country (code, name) values (503, 'El Salvador');
 insert into country (code, name) values (972, 'Israel');
 insert into country (code, name) values (502, 'Guatemala');
