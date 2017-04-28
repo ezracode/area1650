@@ -7,7 +7,7 @@
 		$script = $script . '            <title>Football Soccer Statistics</title>';
 		$script = $script . '            <meta name="description" content="Football Soccer Statistics of All Times">';
 		$script = $script . '            <meta name="robots" content="index, nofollow">';
-		$script = $script . '            <meta http-equiv="content-type" content="text/html";charset="UTF-8">';
+		$script = $script . '            <meta http-equiv="content-type" content="text/html;charset=UTF-8">';
 		$script = $script . '            <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">';	
         $script = $script . '            <link rel="stylesheet" type="text/css" href="../css/group_stage.css">';
 		$script = $script . '            <link rel="shortcut icon" type="image/png" href="../images/logo.png"/>';
