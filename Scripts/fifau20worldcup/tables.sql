@@ -52,7 +52,7 @@ create table if not exists game_score (
 create index game_score_i on game_score (squad);
 
 create view current_country as
-select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (4420, 44) and b.code = 44 
+select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (44) and b.code = 44 
 union
 select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (331, 3399, 3398, 33) and b.code = 33 
 union
@@ -78,4 +78,4 @@ select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newn
 union
 select a.code as oldsquad, a.name as oldname, b.code as newsquad, b.name as newname from country a, country b where a.code in (951, 95) and b.code = 95
 union
-select a.code as oldsquad, a.name as oldname, a.code as newsquad, a.name as newname from country a where a.code not in (4420, 44, 331, 3399, 3398, 33, 322, 32, 1519, 1613, 13141850, 13141015, 1, 90232, 90, 30231, 3021, 30, 4203, 42, 420, 49, 49228, 4930, 38, 38111, 38220, 381, 7812, 7097, 37517, 7, 3531, 353, 951, 95)
+select a.code as oldsquad, a.name as oldname, a.code as newsquad, a.name as newname from country a where a.code not in (44, 331, 3399, 3398, 33, 322, 32, 1519, 1613, 13141850, 13141015, 1, 90232, 90, 30231, 3021, 30, 4203, 42, 420, 49, 49228, 4930, 38, 38111, 38220, 381, 7812, 7097, 37517, 7, 3531, 353, 951, 95)
