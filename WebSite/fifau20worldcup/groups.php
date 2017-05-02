@@ -265,7 +265,7 @@
 		if ($record == 0)
 		{
 			$script = '<a href="http://www.area1650.net/fifau20worldcup/page.php">FIFA U20 World Cup 2017</a>';
-			$script = $script .'<p>No records for this team</p>';
+			$script = $script .'<p>This is the first appearance of the team</p>';
 		}
 		return $script;
 	}
@@ -362,7 +362,7 @@
 		if ($record == 0)
 		{
 			$script = '<a href="http://www.area1650.net/fifau20worldcup/page.php">FIFA U20 World Cup 2017</a>';
-			$script = $script .'<p>No records for this match</p>';
+    		$script = $script .'<p>This match will be played for first time in the tournament</p>';
 		}
 
 		return $script;

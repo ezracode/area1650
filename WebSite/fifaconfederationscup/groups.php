@@ -217,7 +217,7 @@
 		
 		$resultado = $conn->prepare($query);
 		$resultado->execute(array(':country' => $country));
-		$script = '<a href="http://www.area1650.net/fifaconfederationscup/page.php">FIFA U20 World Cup 2017</a>';
+		$script = '<a href="http://www.area1650.net/fifaconfederationscup/page.php">FIFA Confederations Cup 2017</a>';
 		$script = $script .'<table>';
 		$record = 0;
 		while ($data = $resultado->fetch())
@@ -264,8 +264,8 @@
 		$conn = null;
 		if ($record == 0)
 		{
-			$script = '<a href="http://www.area1650.net/fifaconfederationscup/page.php">FIFA U20 World Cup 2017</a>';
-			$script = $script .'<p>No records for this team</p>';
+			$script = '<a href="http://www.area1650.net/fifaconfederationscup/page.php">FIFA Confederations Cup 2017</a>';
+			$script = $script .'<p>This is the first appearance of the team</p>';
 		}
 		return $script;
 	}
@@ -322,7 +322,7 @@
 		$resultado = $conn->prepare($query);
 		$resultado->execute(array(':squada' => $squada, ':squadb' => $squadb));
 
-		$script = '<a href="http://www.area1650.net/fifaconfederationscup/page.php">FIFA U20 World Cup 2017</a>';
+		$script = '<a href="http://www.area1650.net/fifaconfederationscup/page.php">FIFA Confederations Cup 2017</a>';
 		$script = $script .'<table>';
 
 		$record = 0;
@@ -361,8 +361,8 @@
 		$conn = null;
 		if ($record == 0)
 		{
-			$script = '<a href="http://www.area1650.net/fifaconfederationscup/page.php">FIFA U20 World Cup 2017</a>';
-			$script = $script .'<p>No records for this match</p>';
+			$script = '<a href="http://www.area1650.net/fifaconfederationscup/page.php">FIFA Confederations Cup 2017</a>';
+			$script = $script .'<p>This match will be played for first time in the tournament</p>';
 		}
 
 		return $script;
