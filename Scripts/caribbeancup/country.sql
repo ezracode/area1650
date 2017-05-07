@@ -16,6 +16,11 @@ insert into country (code, name) values (1758, 'Saint Lucia');
 insert into country (code, name) values (1876, 'Jamaica');
 insert into country (code, name) values (1767, 'Dominica');
 insert into country (code, name) values (1246, 'Barbados');
+insert into country (code, name) values (597, 'Suriname');
+insert into country (code, name) values (592, 'Guyana');
+insert into country (code, name) values (1441, 'Bermuda');
+insert into country (code, name) values (590590, 'Saint Martin');
+insert into country (code, name) values (1345, 'Cayman Islands');
 /*-------------------------------------------------------------------*/
 insert into country (code, name) values (966, 'Saudi Arabia');
 insert into country (code, name) values (1, 'United States');
