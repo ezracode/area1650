@@ -21,6 +21,12 @@ insert into country (code, name) values (592, 'Guyana');
 insert into country (code, name) values (1441, 'Bermuda');
 insert into country (code, name) values (590590, 'Saint Martin');
 insert into country (code, name) values (1345, 'Cayman Islands');
+insert into country (code, name) values (1787, 'Puerto Rico');
+insert into country (code, name) values (509, 'Haiti');
+insert into country (code, name) values (1809, 'Dominican Republic');
+insert into country (code, name) values (503, 'Cuba');
+insert into country (code, name) values (1664, 'Monserrat');
+insert into country (code, name) values (1264, 'Anguila');
 /*-------------------------------------------------------------------*/
 insert into country (code, name) values (966, 'Saudi Arabia');
 insert into country (code, name) values (1, 'United States');
