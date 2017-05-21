@@ -24,4 +24,5 @@ insert into game_type (id, name) values
 (23, 'Second Round'),
 (24, 'Qualifier Preliminary Round'),
 (25, 'Qualifier First Round'),
-(26, 'Qualifier Second Round');
+(26, 'Qualifier Second Round'),
+(27, 'Qualifier Play-Off');
