@@ -29,7 +29,9 @@ insert into country (code, name) values
 (1664, 'Monserrat'),
 (1264, 'Anguila'),
 (1340, 'United States Virgin Islands'),
-(1649, 'Turks and Caicos Islands');
+(1649, 'Turks and Caicos Islands'),
+(1242, 'Bahamas'),
+(55, 'Brazil');
 /*-------------------------------------------------------------------*/
 (966, 'Saudi Arabia'),
 (1, 'United States'),
@@ -39,7 +41,6 @@ insert into country (code, name) values
 (52, 'Mexico'),
 (234, 'Nigeria'),
 (81, 'Japan'),
-(55, 'Brazil'),
 (61, 'Australia'),
 (598, 'Uruguay'),
 (420, 'Czech Republic'),
