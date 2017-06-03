@@ -31,7 +31,8 @@ insert into country (code, name) values
 (1340, 'United States Virgin Islands'),
 (1649, 'Turks and Caicos Islands'),
 (1242, 'Bahamas'),
-(55, 'Brazil');
+(55, 'Brazil'),
+(5999, 'Curacao');
 /*-------------------------------------------------------------------*/
 (966, 'Saudi Arabia'),
 (1, 'United States'),
