@@ -25,7 +25,7 @@ insert into country (code, name) values
 (1787, 'Puerto Rico'),
 (509, 'Haiti'),
 (1809, 'Dominican Republic'),
-(503, 'Cuba'),
+(53, 'Cuba'),
 (1664, 'Monserrat'),
 (1264, 'Anguila'),
 (1340, 'United States Virgin Islands'),
