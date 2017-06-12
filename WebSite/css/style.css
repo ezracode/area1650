@@ -25,6 +25,7 @@ ul
 }​
 ul li
 {
+	background-color: maroon;
 	list-style-type: none;
 }
 a:hover
