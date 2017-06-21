@@ -2,8 +2,9 @@ from lxml import html
 from lxml import etree
 from collections import OrderedDict
 import requests
+from ezraLibrary import textOfDiv
 
-link = "https://www.facebook.com/careers/jobs/a0I1200000IMgs8EAD/"
+link = "https://www.facebook.com/careers/jobs/a0I1200000JY01QEAT/"
 
 response = requests.get(link) #get page data from server, block redirects
 sourceCode = response.content #get string of source code from response
@@ -14,24 +15,11 @@ aDict = {}
 root = etree.HTML(sourceCode)
 #root.findall(".//table")
 aDict = {}
-for b1 in root.iterfind(".//div"):
-    #table
-    print ("****")
-    #print (b1)
-    for c1 in  b1:
-        #td
-        #print (c1)
-        for d1 in  c1:
-            #tr
-            #print (d1)
-            for e1 in  d1:
-                #elemento
-                #print (e1.items())
-                if e1.text is not None:
-                    texto = e1.text
-                    palabras = texto.split()
-                    #print (e1.text)
-                    for palabra in  palabras:
-                        aDict[palabra] = palabra
+for e1 in root.iterfind(".//div"):
+    texto = textOfDiv(e1)
+    palabras = texto.split()
+    for palabra in  palabras:
+        aDict[palabra] = palabra
+
 for item in aDict:
-    print (item)    
+    print (item.encode('utf-8'))    
