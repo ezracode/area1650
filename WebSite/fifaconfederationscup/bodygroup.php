@@ -47,13 +47,19 @@
 		$stage = 4;
 		$script = $script . knockout_stage($year, $stage);
 		$script = $script . '						</div>';
-/*
+
+		$script = $script . '						<div id="third-place">';
+		$script = $script . '							<p>Third Place</p>';
+		$stage = 5;
+		$script = $script . knockout_stage($year, $stage);
+		$script = $script . '						</div>';
+
 		$script = $script . '						<div id="final">';
 		$script = $script . '							<p>Final</p>';
 		$stage = 6;
 		$script = $script . knockout_stage($year, $stage);
 		$script = $script . '						</div>';
-*/		
+		
 		$script = $script . '					</div>';
 		$script = $script . '				</body>';
 		$script = $script . '    </html>';
